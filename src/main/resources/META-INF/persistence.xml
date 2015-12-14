@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+    <persistence-unit name="airtng-servlets" transaction-type="RESOURCE_LOCAL">
+        <class>org.twilio.airtng.models.User</class>
+        <class>org.twilio.airtng.models.VacationProperty</class>
+        <class>org.twilio.airtng.models.Reservation</class>
+        <properties>
+            <property name="eclipselink.target-database" value="PostgreSQL"/>
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="eclipselink.logging.level" value="ALL"/>
+        </properties>
+    </persistence-unit>
+</persistence>
