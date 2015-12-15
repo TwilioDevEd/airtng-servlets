@@ -10,14 +10,6 @@ public class UserRepository extends Repository<User> {
         super(User.class);
     }
 
-    public User find(long id) {
-        em.getEntityManagerFactory().getCache().evictAll();
-        User user = em.find(User.class, id);
-        em.refresh(user);
-
-        return user;
-    }
-
     public User findByEmail(String email) {
         User user = null;
 
@@ -31,6 +23,4 @@ public class UserRepository extends Repository<User> {
 
         return user;
     }
-
-
 }

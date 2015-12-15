@@ -27,37 +27,19 @@
 <nav class="navbar navbar-transparent">
     <a class="navbar-brand" href="/">airtng</a>
     <ul class="navbar-nav navbar-right pull-right">
-        <li><a href="/register" id="registerLink">Sign Up</a></li>
-        <li><a href="/login" id="loginLink">Log In</a></li>
+        <li><a href="/properties/new" id="registerLink">New Vacation property</a></li>
+        <li><a href="/logout" id="loginLink">Log out</a></li>
     </ul>
 </nav>
 
 
 <section id="main" class="push-nav">
 
-    <div class="container">
+    <div class="hero-text full-page">
+        <h1>Lodging fit for a captain</h1>
 
-        <h1>Log in</h1>
-
-        <form action="/login" method="post">
-            <div class="form-group">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" class="form-control" name="email" id="email" placeholder="Email"
-                           value="${email}">
-                    <span class="text-danger">${emailError}</span>
-                    <span class="text-danger">${emailInvalidError}</span>
-                    <span class="text-danger">${loginError}</span>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" name="password" id="password" value="${password}"
-                           placeholder="Password">
-                    <span class="text-danger">${passwordError}</span>
-                </div>
-            </div>
-            <input type="submit" value="Log In" class="btn btn-primary"/>
-        </form>
+        <p>The Next Generation of vacation rentals.</p>
+        <a href="/properties" class="btn btn-transparent btn-lg">View Properties</a>
     </div>
 </section>
 <footer class="container">

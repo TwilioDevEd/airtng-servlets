@@ -1,7 +1,6 @@
 package org.twilio.airtng.servlets;
 
 
-import org.twilio.airtng.lib.auth.SessionManager;
 import org.twilio.airtng.lib.web.request.validators.RequestParametersValidator;
 import org.twilio.airtng.models.User;
 import org.twilio.airtng.repositories.UserRepository;
@@ -11,23 +10,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class RegistrationServlet extends BaseServlet {
+public class RegistrationServlet extends BasePasswordEncryptorServlet {
 
-    private final SessionManager sessionManager;
     private final UserRepository userRepository;
 
     @SuppressWarnings("unused")
     public RegistrationServlet() {
-        this(new SessionManager(), new UserRepository());
+        this(new UserRepository());
     }
 
-    public RegistrationServlet(SessionManager sessionManager, UserRepository userService) {
-        this.sessionManager = sessionManager;
+    public RegistrationServlet(UserRepository userService) {
+        super(false);
         this.userRepository = userService;
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        super.doGet(request, response);
 
         request.getRequestDispatcher("/registration.jsp").forward(request, response);
     }
@@ -45,12 +45,11 @@ public class RegistrationServlet extends BaseServlet {
         String phoneNumber = request.getParameter("phoneNumber");
 
         if (isValidRequest()) {
-            String encryptedPassword = getPassWordEncryptor().encryptPassword(password);
+            String encryptedPassword = passwordEncryptor.get().encryptPassword(password);
 
             User user = userRepository.create(new User(name, email, encryptedPassword, countryCode, phoneNumber));
-
-            sessionManager.logIn(request, user.getId());
-            response.sendRedirect("/login");
+            sessionManager.get().logIn(request, user.getId());
+            response.sendRedirect("/home");
         } else {
             preserveStatusRequest(request, name, email, countryCode, phoneNumber);
             request.getRequestDispatcher("/registration.jsp").forward(request, response);

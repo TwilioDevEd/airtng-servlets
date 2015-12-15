@@ -27,9 +27,8 @@
 <nav class="navbar navbar-transparent">
     <a class="navbar-brand" href="/">airtng</a>
     <ul class="navbar-nav navbar-right pull-right">
-        <li><a href="/Account/Register" id="registerLink">Sign Up</a></li>
-        <li><a href="/Account/Login" id="loginLink">Log In</a></li>
-
+        <li><a href="/register" id="registerLink">Sign Up</a></li>
+        <li><a href="/login" id="loginLink">Log In</a></li>
     </ul>
 </nav>
 

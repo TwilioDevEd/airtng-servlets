@@ -6,7 +6,7 @@ body.cover footer {
 }
 
 .hero-text {
-    background: url(Images/tngbg.jpg);
+    background: url(/images/tngbg.jpg);
     margin: 0px;
     top: 0px;
     text-align: center;
