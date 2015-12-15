@@ -64,7 +64,7 @@
             </div>
             <div class="form-group">
                 <label for="phoneNumber">Phone number:</label>
-                <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" value="${phoneNumber}">
+                <input type="number" class="form-control" name="phoneNumber" id="phoneNumber" value="${phoneNumber}">
                 <span class="text-danger">${phoneNumberError}</span>
             </div>
             <button class="btn btn-primary">Sign up</button>

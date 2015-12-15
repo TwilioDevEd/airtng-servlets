@@ -4,9 +4,16 @@ import javax.servlet.http.HttpServletRequest;
 
 public class RequestParametersValidator {
 
-    private final HttpServletRequest request;
+    private HttpServletRequest request;
+
+    public RequestParametersValidator(){
+    }
 
     public RequestParametersValidator(HttpServletRequest request) {
+        this.request = request;
+    }
+
+    public void setRequest(HttpServletRequest request) {
         this.request = request;
     }
 
