@@ -11,9 +11,6 @@ public class Reservation {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "full_phone_number")
-    private String fullPhoneNumber;
-
     @Column(name = "message")
     private String message;
 
@@ -31,10 +28,11 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(String name, String phoneNumber, String message) {
+    public Reservation(String message, VacationProperty vacationProperty, User user) {
         this();
-        this.fullPhoneNumber = phoneNumber;
         this.message = message;
+        this.vacationProperty = vacationProperty;
+        this.user = user;
         this.setStatus(Status.Pending);
     }
 
@@ -44,14 +42,6 @@ public class Reservation {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getFullPhoneNumber() {
-        return fullPhoneNumber;
-    }
-
-    public void setFullPhoneNumber(String fullPhoneNumber) {
-        this.fullPhoneNumber = fullPhoneNumber;
     }
 
     public String getMessage() {

@@ -43,6 +43,10 @@
         <servlet-name>reservation</servlet-name>
         <servlet-class>org.twilio.airtng.servlets.ReservationServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>org.twilio.airtng.servlets.LogoutServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>registration</servlet-name>
@@ -68,6 +72,10 @@
         <servlet-name>reservation</servlet-name>
         <url-pattern>/reservation</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
 
     <filter>
         <filter-name>AuthFilter</filter-name>
@@ -79,5 +87,6 @@
         <url-pattern>/reservation</url-pattern>
         <url-pattern>/properties</url-pattern>
         <url-pattern>/properties-new</url-pattern>
+        <url-pattern>/reservation</url-pattern>
     </filter-mapping>
 </web-app>

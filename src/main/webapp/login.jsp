@@ -2,6 +2,11 @@
 <%@ taglib uri="http://kwonnam.pe.kr/jsp/template-inheritance" prefix="layout" %>
 
 <layout:extends name="base">
+    <layout:put block="nav_bg" type="REPLACE">
+        <!-- Nav Bar -->
+        <nav class="navbar navbar-space">
+        </nav>
+    </layout:put>
     <layout:put block="contents" type="REPLACE">
         <div class="container">
 

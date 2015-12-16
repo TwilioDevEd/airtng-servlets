@@ -17,7 +17,7 @@
             <div class="row">
                 <core:forEach var="prop" items="${vacationProperties}">
                     <div class="col-md-4">
-                        <a href="/" class="property">
+                        <a href="/reservation?id=${prop.id}" class="property">
                             <img src="${prop.imageUrl}" alt="Vacation Property"/>
 
                             <h2>${prop.description}"</h2>

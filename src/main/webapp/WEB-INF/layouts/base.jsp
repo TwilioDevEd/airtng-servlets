@@ -25,18 +25,24 @@
 </head>
 <body>
 
+<%
+    Boolean authenticated = (Boolean) session.getAttribute("authenticated");
+%>
+
+<layout:block name="nav_bg">
+
+</layout:block>
+
 <!-- Nav Bar -->
 <nav class="navbar navbar-transparent">
     <a class="navbar-brand" href="/">airtng</a>
     <ul class="navbar-nav navbar-right pull-right">
-        <%
-            Boolean authenticated = (Boolean) session.getAttribute("authenticated");
-        %>
         <core:choose>
-            <core:when test="${authenticated}">'
+            <core:when test="${authenticated}">
+                <form action="/logout" method="POST" id="logoutForm" style="display:none;"></form>
                 <li><img src="/images/spock.png" alt="Spock"/></li>
                 <li><a href="/properties-new" id="newPropertyLink">New Vacation property</a></li>
-                <li><a href="/logout" id="logoutLink">Log out</a></li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()" id="logoutLink">Log out</a></li>
             </core:when>
             <core:otherwise>
                 <li><a href="/register" id="registerLink">Sign Up</a></li>
