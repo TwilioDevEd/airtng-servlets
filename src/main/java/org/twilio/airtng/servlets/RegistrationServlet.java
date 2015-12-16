@@ -24,6 +24,7 @@ public class RegistrationServlet extends BasePasswordEncryptorServlet {
         this.userRepository = userService;
     }
 
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

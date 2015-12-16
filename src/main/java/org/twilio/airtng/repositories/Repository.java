@@ -43,7 +43,7 @@ public abstract class Repository<T> {
      *
      * @return the entity with the given id
      */
-    public T find(int id) {
+    public T find(long id) {
         T entity = em.find(entityType, id);
         em.refresh(entity);
 

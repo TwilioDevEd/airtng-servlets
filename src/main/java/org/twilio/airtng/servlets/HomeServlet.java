@@ -21,6 +21,7 @@ public class HomeServlet extends WebAppServlet {
         this.userRepository = userService;
     }
 
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

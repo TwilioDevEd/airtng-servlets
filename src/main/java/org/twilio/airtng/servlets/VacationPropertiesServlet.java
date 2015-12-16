@@ -1,6 +1,5 @@
 package org.twilio.airtng.servlets;
 
-import org.twilio.airtng.lib.auth.SessionManager;
 import org.twilio.airtng.lib.servlets.WebAppServlet;
 import org.twilio.airtng.models.VacationProperty;
 import org.twilio.airtng.repositories.VacationPropertiesRepository;
@@ -13,19 +12,18 @@ import java.util.List;
 
 public class VacationPropertiesServlet extends WebAppServlet {
 
-    private final SessionManager sessionManager;
     private final VacationPropertiesRepository vacationPropertiesRepository;
 
     @SuppressWarnings("unused")
     public VacationPropertiesServlet() {
-        this(new SessionManager(), new VacationPropertiesRepository());
+        this(new VacationPropertiesRepository());
     }
 
-    public VacationPropertiesServlet(SessionManager sessionManager, VacationPropertiesRepository vacationPropertiesRepository) {
-        this.sessionManager = sessionManager;
+    public VacationPropertiesServlet(VacationPropertiesRepository vacationPropertiesRepository) {
         this.vacationPropertiesRepository = vacationPropertiesRepository;
     }
 
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

@@ -1,6 +1,5 @@
 package org.twilio.airtng.servlets;
 
-import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.twilio.airtng.lib.web.request.validators.RequestParametersValidator;
 import org.twilio.airtng.models.User;
 import org.twilio.airtng.repositories.UserRepository;
@@ -24,6 +23,7 @@ public class LoginServlet extends BasePasswordEncryptorServlet {
         this.userRepository = userService;
     }
 
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -33,6 +33,8 @@ public class LoginServlet extends BasePasswordEncryptorServlet {
         request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
 
+
+    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

@@ -30,9 +30,10 @@ public class VacationProperty {
         this.reservations = new ArrayList<Reservation>();
     }
 
-    public VacationProperty(String description, String imageUrl) {
+    public VacationProperty(String description, String imageUrl, User user) {
         this.description = description;
         this.imageUrl = imageUrl;
+        this.user = user;
     }
 
     public long getId() {

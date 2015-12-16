@@ -1,6 +1,7 @@
 <%@ page import="static org.twilio.airtng.lib.auth.SessionManager.*" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://kwonnam.pe.kr/jsp/template-inheritance" prefix="layout" %>
+<%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,42 +26,38 @@
 <body>
 
 <!-- Nav Bar -->
-<nav class="navbar navbar-space">
-</nav>
-
 <nav class="navbar navbar-transparent">
     <a class="navbar-brand" href="/">airtng</a>
     <ul class="navbar-nav navbar-right pull-right">
         <%
-            Object authenticated = session.getAttribute(AUTHENTICATED);
-            if (authenticated != null && (Boolean) authenticated) {
+            Boolean authenticated = (Boolean) session.getAttribute("authenticated");
         %>
-        ${authenticated}
-        <li><a href="/properties/new" id="newPropertyLink">New Vacation property</a></li>
-        <li><a href="/logout" id="logoutLink">Log out</a></li>
-
-        <%
-        } else {
-        %>
-        <li><a href="/register" id="registerLink">Sign Up</a></li>
-        <li><a href="/login" id="loginLink">Log In</a></li>
-
-        <%
-            }
-        %>
+        <core:choose>
+            <core:when test="${authenticated}">'
+                <li><img src="/images/spock.png" alt="Spock"/></li>
+                <li><a href="/properties-new" id="newPropertyLink">New Vacation property</a></li>
+                <li><a href="/logout" id="logoutLink">Log out</a></li>
+            </core:when>
+            <core:otherwise>
+                <li><a href="/register" id="registerLink">Sign Up</a></li>
+                <li><a href="/login" id="loginLink">Log In</a></li>
+            </core:otherwise>
+        </core:choose>
     </ul>
 
 </nav>
 
+<layout:block name="hero">
+
+</layout:block>
+
 
 <section id="main" class="push-nav">
-
     <layout:block name="contents">
 
     </layout:block>
-
-
 </section>
+
 <footer class="container">
     Made with <i class="fa fa-heart"></i> by your pals
     <a href="http://www.twilio.com">@twilio</a>
