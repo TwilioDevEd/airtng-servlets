@@ -4,6 +4,17 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
+
+    <context-param>
+        <param-name>jsp-inheritance-prefix</param-name>
+        <param-value>/WEB-INF/layouts/</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>jsp-inheritance-suffix</param-name>
+        <param-value>.jsp</param-value>
+    </context-param>
+
     <welcome-file-list>
         <welcome-file>registration.jsp</welcome-file>
     </welcome-file-list>
@@ -20,6 +31,14 @@
         <servlet-name>home</servlet-name>
         <servlet-class>org.twilio.airtng.servlets.HomeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>vacationProperties</servlet-name>
+        <servlet-class>org.twilio.airtng.servlets.VacationPropertiesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>reservation</servlet-name>
+        <servlet-class>org.twilio.airtng.servlets.ReservationServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>registration</servlet-name>
@@ -33,4 +52,23 @@
         <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>vacationProperties</servlet-name>
+        <url-pattern>/properties</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>reservation</servlet-name>
+        <url-pattern>/reservation</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>org.twilio.airtng.servlets.filters.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/home</url-pattern>
+        <url-pattern>/reservation</url-pattern>
+        <url-pattern>/properties</url-pattern>
+    </filter-mapping>
 </web-app>

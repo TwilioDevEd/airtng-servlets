@@ -14,7 +14,7 @@ public class BasePasswordEncryptorServlet extends WebAppServlet {
     }
 
     public BasePasswordEncryptorServlet(boolean isSecureServlet) {
-        super(isSecureServlet);
+        super();
         this.passwordEncryptor = new Lazy<>(StrongPasswordEncryptor::new);
     }
 }

@@ -25,6 +25,7 @@ repositories {
 dependencies {
     compile 'javax.servlet:javax.servlet-api:3.1.0'
     compile 'javax.servlet:jstl:1.2'
+    compile 'kr.pe.kwonnam.jsp:jsp-template-inheritance:0.3.RELEASE'
     compile 'org.eclipse.persistence:eclipselink:2.6.1'
     compile 'org.postgresql:postgresql:9.4-1206-jdbc42'
     compile 'org.jasypt:jasypt:1.9.0'

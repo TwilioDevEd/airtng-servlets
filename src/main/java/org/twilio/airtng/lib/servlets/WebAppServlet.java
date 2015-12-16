@@ -12,16 +12,11 @@ import java.io.IOException;
 
 public class WebAppServlet extends HttpServlet {
 
-    private boolean isSecureServlet = false;
     protected Lazy<SessionManager> sessionManager;
     protected Lazy<RequestParametersValidator> requestValidator;
 
-    protected WebAppServlet() {
-        this(true);
-    }
 
-    protected WebAppServlet(boolean isSecureServlet) {
-        this.isSecureServlet = isSecureServlet;
+    protected WebAppServlet() {
         sessionManager = new Lazy<>(SessionManager::new);
         requestValidator = new Lazy<>(RequestParametersValidator::new);
     }
@@ -34,8 +29,6 @@ public class WebAppServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if (isSecureServlet)
-            secureRequest(request, response);
     }
 
     protected boolean isValidRequest() {
@@ -45,10 +38,5 @@ public class WebAppServlet extends HttpServlet {
     protected boolean isValidRequest(RequestParametersValidator validator) {
 
         return true;
-    }
-
-    protected void secureRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        if (!sessionManager.get().isAuthenticated(request))
-            response.sendRedirect("/login");
     }
 }
