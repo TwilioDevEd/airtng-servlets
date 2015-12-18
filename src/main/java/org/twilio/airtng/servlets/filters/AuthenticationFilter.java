@@ -18,9 +18,7 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        String uri = request.getRequestURI();
-
-        if (isAuthorized(request, uri)) {
+        if (isAuthorized(request)) {
             chain.doFilter(servletRequest, servletResponse);
         } else {
             response.sendRedirect("/login");
@@ -31,7 +29,7 @@ public class AuthenticationFilter implements Filter {
     public void destroy() {
     }
 
-    private boolean isAuthorized(HttpServletRequest request, String uri) {
-        return new SessionManager().isAuthenticated(request) || uri.endsWith("login");
+    private boolean isAuthorized(HttpServletRequest request) {
+        return new SessionManager().isAuthenticated(request);
     }
 }

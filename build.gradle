@@ -29,9 +29,12 @@ dependencies {
     compile 'org.eclipse.persistence:eclipselink:2.6.1'
     compile 'org.postgresql:postgresql:9.4-1206-jdbc42'
     compile 'org.jasypt:jasypt:1.9.0'
+    compile 'com.twilio.sdk:twilio-java-sdk:5.5.1'
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-all:1.10.19'
+    testCompile 'org.jdom:jdom:2.0.2'
+    testCompile 'pl.pragmatists:JUnitParams:1.0.4'
 }
 
 flyway {

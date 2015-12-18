@@ -23,4 +23,18 @@ public class UserRepository extends Repository<User> {
 
         return user;
     }
+
+    public User findByPhoneNumber(String phoneNumber) {
+        User user = null;
+        try {
+            user = (User) em.createQuery(
+                    String.format("SELECT e FROM %s e WHERE e.phoneNumber = :phone_number", entityType.getSimpleName()))
+                    .setParameter("phone_number", phoneNumber)
+                    .getSingleResult();
+        } catch (NoResultException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return user;
+    }
 }

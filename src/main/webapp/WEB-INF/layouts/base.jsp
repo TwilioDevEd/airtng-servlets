@@ -25,10 +25,6 @@
 </head>
 <body>
 
-<%
-    Boolean authenticated = (Boolean) session.getAttribute("authenticated");
-%>
-
 <layout:block name="nav_bg">
 
 </layout:block>
@@ -37,6 +33,9 @@
 <nav class="navbar navbar-transparent">
     <a class="navbar-brand" href="/">airtng</a>
     <ul class="navbar-nav navbar-right pull-right">
+        <%
+            Boolean authenticated = (Boolean) session.getAttribute("authenticated");
+        %>
         <core:choose>
             <core:when test="${authenticated}">
                 <form action="/logout" method="POST" id="logoutForm" style="display:none;"></form>

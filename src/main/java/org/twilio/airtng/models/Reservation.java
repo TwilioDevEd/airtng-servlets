@@ -81,7 +81,7 @@ public class Reservation {
     }
 
     public void reject() {
-        this.setStatus(Status.Reject);
+        this.setStatus(Status.Rejected);
     }
 
     public void confirm() {
@@ -90,7 +90,7 @@ public class Reservation {
 
     public enum Status {
 
-        Pending(0), Confirmed(1), Reject(2);
+        Pending(0), Confirmed(1), Rejected(2);
 
         private int value;
 
@@ -101,6 +101,20 @@ public class Reservation {
         public int getValue() {
             return value;
         }
+
+        @Override
+        public String toString() {
+            switch (value) {
+                case 0:
+                    return "pending";
+                case 1:
+                    return "confirmed";
+                case 2:
+                    return "rejected";
+            }
+            return "Value out of range";
+        }
+
 
         public static Status getType(Integer id) {
 
