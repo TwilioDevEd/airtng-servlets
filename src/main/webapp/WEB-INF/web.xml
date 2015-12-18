@@ -47,6 +47,10 @@
         <servlet-name>logout</servlet-name>
         <servlet-class>org.twilio.airtng.servlets.LogoutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>/reservationConfirmation</servlet-name>
+        <servlet-class>org.twilio.airtng.servlets.ReservationConfirmationServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>registration</servlet-name>
@@ -75,6 +79,10 @@
     <servlet-mapping>
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>/reservationConfirmation</servlet-name>
+        <url-pattern>/reservation-confirmation</url-pattern>
     </servlet-mapping>
 
     <filter>
