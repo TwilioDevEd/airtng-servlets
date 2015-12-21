@@ -57,8 +57,8 @@ public class ReservationConfirmationServletTest extends BaseServletTest {
         when(request.getParameter("From")).thenReturn("+1998877665");
         when(request.getParameter("Body")).thenReturn("");
 
-        User host = new User("Host", "host@email.com", "password", "1", "998877665");
-        User guest = new User("Guest", "guest@email.com", "password", "1", "566477665");
+        User host = new User("Host", "host@email.com", "password", "+1998877665");
+        User guest = new User("Guest", "guest@email.com", "password", "+1566477665");
         VacationProperty vacationProperty = new VacationProperty("Property", "http://image.com/first.png", host);
         Reservation reservation = new Reservation("i reserve", vacationProperty, guest);
 

@@ -15,10 +15,6 @@ public class SmsNotifier {
     }
 
     public void notifyHost(Reservation reservation) {
-        String phoneNumber = String.format("+%s%s",
-                reservation.getVacationProperty().getUser().getCountryCode(),
-                reservation.getVacationProperty().getUser().getPhoneNumber());
-
         StringBuilder messageBuilder = new StringBuilder();
         messageBuilder.append(String.format("You have a new reservation request from %s for %s:\n",
                 reservation.getUser().getName(),
@@ -29,19 +25,16 @@ public class SmsNotifier {
         messageBuilder.append("Reply [accept] or [reject]");
 
 
-        smsSender.send(phoneNumber, messageBuilder.toString());
+        smsSender.send(reservation.getVacationProperty().getUser().getPhoneNumber(), messageBuilder.toString());
     }
 
     public void notifyGuest(Reservation reservation) {
-        String phoneNumber = String.format("+%s%s",
-                reservation.getUser().getCountryCode(),
-                reservation.getUser().getPhoneNumber());
 
-        String message = String.format("Your recent request to stay at %s was %s:\n",
+        String message = String.format("Your recent request to stay at %s was %s\n",
                 reservation.getVacationProperty().getDescription(),
                 reservation.getStatus().toString());
 
 
-        smsSender.send(phoneNumber, message);
+        smsSender.send(reservation.getUser().getPhoneNumber(), message);
     }
 }

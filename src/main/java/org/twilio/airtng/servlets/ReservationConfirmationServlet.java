@@ -48,9 +48,15 @@ public class ReservationConfirmationServlet extends WebAppServlet {
                     reservation.confirm();
                 else
                     reservation.reject();
+                reservationRepository.update(reservation);
+
                 smsResponseText = String.format("You have successfully %s the reservation", reservation.getStatus().toString());
+                smsNotifier.notifyGuest(reservation);
             }
         } catch (Exception e) {
+
+            System.out.println("----------------");
+            System.out.println(e.getMessage());
         }
 
         try {

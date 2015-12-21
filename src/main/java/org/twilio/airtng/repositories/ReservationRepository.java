@@ -13,8 +13,9 @@ public class ReservationRepository extends Repository<Reservation> {
     public Reservation findFirstPendantReservationsByUser(long userId) {
         Reservation reservation = null;
         try {
-            reservation = (Reservation) em.createQuery(
-                    String.format("SELECT e FROM %s e WHERE e.status = 0 AND user.id = :user_id", entityType.getSimpleName()))
+            reservation = (Reservation)
+                    em.createQuery("SELECT e FROM Reservation e WHERE e.status = 0 AND e.vacationProperty.user.id = :user_id")
+                            .setMaxResults(1)
                     .setParameter("user_id", userId)
                     .getSingleResult();
         } catch (NoResultException ex) {

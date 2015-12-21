@@ -21,9 +21,6 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "country_code")
-    private String countryCode;
-
     @Column(name = "phone_number")
     private String phoneNumber;
 
@@ -42,13 +39,11 @@ public class User {
             String name,
             String email,
             String password,
-            String countryCode,
             String phoneNumber) {
         this();
         this.name = name;
         this.email = email;
         this.password = password;
-        this.countryCode = countryCode;
         this.phoneNumber = phoneNumber;
     }
 
@@ -82,14 +77,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getCountryCode() {
-        return countryCode;
-    }
-
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
     }
 
     public String getPhoneNumber() {

@@ -48,7 +48,8 @@ public class RegistrationServlet extends BasePasswordEncryptorServlet {
         if (isValidRequest()) {
             String encryptedPassword = passwordEncryptor.get().encryptPassword(password);
 
-            User user = userRepository.create(new User(name, email, encryptedPassword, countryCode, phoneNumber));
+            User user = userRepository.create(
+                    new User(name, email, encryptedPassword, String.format("+%s%s", countryCode, phoneNumber)));
             sessionManager.get().logIn(request, user.getId());
             response.sendRedirect("/home");
         } else {

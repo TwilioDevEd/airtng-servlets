@@ -27,8 +27,7 @@ public class UserRepository extends Repository<User> {
     public User findByPhoneNumber(String phoneNumber) {
         User user = null;
         try {
-            user = (User) em.createQuery(
-                    String.format("SELECT e FROM %s e WHERE e.phoneNumber = :phone_number", entityType.getSimpleName()))
+            user = (User) em.createQuery("SELECT u FROM User u WHERE u.phoneNumber = :phone_number")
                     .setParameter("phone_number", phoneNumber)
                     .getSingleResult();
         } catch (NoResultException ex) {
