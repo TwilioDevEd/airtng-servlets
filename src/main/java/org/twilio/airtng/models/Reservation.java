@@ -17,6 +17,9 @@ public class Reservation {
     @Column(name = "status")
     private Integer status;
 
+    @Column(name = "anonymous_phone_number")
+    private String anonymousPhoneNumber;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
