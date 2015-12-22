@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.twilio.airtng.lib.notifications.SmsNotifier;
+import org.twilio.airtng.lib.phonenumber.Purchaser;
 import org.twilio.airtng.models.Reservation;
 import org.twilio.airtng.models.User;
 import org.twilio.airtng.models.VacationProperty;
@@ -46,6 +47,9 @@ public class ReservationConfirmationServletTest extends BaseServletTest {
     @Mock
     SmsNotifier smsNotifier;
 
+    @Mock
+    Purchaser phoneNumberPurchaser;
+
     @Before
     public void setUp() throws IOException {
         MockitoAnnotations.initMocks(this);
@@ -57,8 +61,8 @@ public class ReservationConfirmationServletTest extends BaseServletTest {
         when(request.getParameter("From")).thenReturn("+1998877665");
         when(request.getParameter("Body")).thenReturn("");
 
-        User host = new User("Host", "host@email.com", "password", "+1998877665");
-        User guest = new User("Guest", "guest@email.com", "password", "+1566477665");
+        User host = new User("Host", "host@email.com", "password", "+1998877665", "998");
+        User guest = new User("Guest", "guest@email.com", "password", "+1566477665", "566");
         VacationProperty vacationProperty = new VacationProperty("Property", "http://image.com/first.png", host);
         Reservation reservation = new Reservation("i reserve", vacationProperty, guest);
 
@@ -71,7 +75,7 @@ public class ReservationConfirmationServletTest extends BaseServletTest {
 
         ReservationConfirmationServlet servlet = new ReservationConfirmationServlet(userRepository,
                 reservationRepository,
-                smsNotifier);
+                smsNotifier, phoneNumberPurchaser);
         servlet.doPost(request, response);
 
         printWriter.flush();

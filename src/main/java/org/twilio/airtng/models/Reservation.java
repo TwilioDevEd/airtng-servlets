@@ -67,6 +67,14 @@ public class Reservation {
         }
     }
 
+    public String getAnonymousPhoneNumber() {
+        return anonymousPhoneNumber;
+    }
+
+    public void setAnonymousPhoneNumber(String anonymousPhoneNumber) {
+        this.anonymousPhoneNumber = anonymousPhoneNumber;
+    }
+
     public VacationProperty getVacationProperty() {
         return vacationProperty;
     }

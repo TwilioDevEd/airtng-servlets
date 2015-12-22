@@ -24,10 +24,13 @@ public class User {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @OneToMany(mappedBy="user")
+    @Column(name = "area_code")
+    private String areaCode;
+
+    @OneToMany(mappedBy = "user")
     private List<Reservation> reservations;
 
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy = "user")
     private List<VacationProperty> vacationProperties;
 
     public User() {
@@ -39,12 +42,14 @@ public class User {
             String name,
             String email,
             String password,
-            String phoneNumber) {
+            String phoneNumber,
+            String areaCode) {
         this();
         this.name = name;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
+        this.areaCode = areaCode;
     }
 
     public long getId() {
@@ -85,6 +90,14 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getAreaCode() {
+        return areaCode;
+    }
+
+    public void setAreaCode(String areaCode) {
+        this.areaCode = areaCode;
     }
 
     public void addReservation(Reservation reservation) {

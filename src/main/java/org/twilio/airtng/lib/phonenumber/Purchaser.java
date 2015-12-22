@@ -15,46 +15,64 @@ import java.util.Map;
 
 public class Purchaser {
 
+    private final TwilioRestClient client;
+
+    public Purchaser() {
+        client = new TwilioRestClient(Config.getAccountSid(), Config.getAuthToken());
+    }
+
+    public Purchaser(TwilioRestClient client) {
+        this.client = client;
+    }
+
     public String buyNumber(String areaCode) {
-
-        // Instantiate a new Twilio Rest Client
-        TwilioRestClient client = new TwilioRestClient(Config.getAccountSid(), Config.getAuthToken());
-
-        // Get the account and phone number factory class
         Account account = client.getAccount();
-        IncomingPhoneNumberFactory phoneNumberFactory =
-                account.getIncomingPhoneNumberFactory();
+        IncomingPhoneNumberFactory phoneNumberFactory = account.getIncomingPhoneNumberFactory();
 
-        // Find a number with the given area code!
-        // See: http://www.twilio.com/docs/api/rest/available-phone-numbers
         Map<String, String> searchParams = new HashMap<>();
         searchParams.put("AreaCode", areaCode);
+        searchParams.put("SmsEnabled", String.valueOf(true));
+        searchParams.put("VoiceEnabled", String.valueOf(true));
 
-        AvailablePhoneNumberList phoneNumbers = account.getAvailablePhoneNumbers(searchParams);
-        List<AvailablePhoneNumber> list = phoneNumbers.getPageData();
+        List<AvailablePhoneNumber> availableNumbersForGivenArea = getAvailablePhoneNumbers(account, searchParams);
 
-        if (list.size() > 0) {
-            /* POST the Phone Number we want to buy to the IncomingPhoneNumbers resource */
-            try {
-                // Buy the first number returned
-                Map<String, String> buyParams = new HashMap<>();
-                buyParams.put("PhoneNumber", list.get(0).getPhoneNumber());
-                buyParams.put("VoiceUrl", "http://demo.twilio.com/welcome/voice/");
-                account.getIncomingPhoneNumberFactory().create(buyParams);
+        if (availableNumbersForGivenArea.size() > 0) {
+            String number = buyNumber(account, phoneNumberFactory, availableNumbersForGivenArea.get(0).getPhoneNumber());
+            if (number != null)
+                return number;
+        } else {
+            searchParams.remove("AreaCode");
+            List<AvailablePhoneNumber> generalAvailableNumbers = getAvailablePhoneNumbers(account, searchParams);
 
-                IncomingPhoneNumber number = phoneNumberFactory.create(buyParams);
-
-                return number.getPhoneNumber();
-
-            } catch (TwilioRestException e) {
-                e.printStackTrace();
+            if (generalAvailableNumbers.size() > 0) {
+                String number = buyNumber(account, phoneNumberFactory, generalAvailableNumbers.get(0).getPhoneNumber());
+                if (number != null)
+                    return number;
             }
         }
-
         return null;
     }
 
-    public String buyNumber() {
-        return buyNumber("US");
+    private List<AvailablePhoneNumber> getAvailablePhoneNumbers(Account account, Map<String, String> searchParams) {
+        AvailablePhoneNumberList phoneNumbers = account.getAvailablePhoneNumbers(searchParams, "US", "Local");
+        return phoneNumbers.getPageData();
+    }
+
+    private String buyNumber(Account account, IncomingPhoneNumberFactory phoneNumberFactory, String phoneNumber) {
+        try {
+            Map<String, String> buyParams = new HashMap<>();
+            buyParams.put("PhoneNumber", phoneNumber);
+            buyParams.put("SmsApplicationSid", Config.getApplicationSid());
+            buyParams.put("VoiceApplicationSid", Config.getApplicationSid());
+            account.getIncomingPhoneNumberFactory().create(buyParams);
+
+            IncomingPhoneNumber number = phoneNumberFactory.create(buyParams);
+
+            return number.getPhoneNumber();
+
+        } catch (TwilioRestException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

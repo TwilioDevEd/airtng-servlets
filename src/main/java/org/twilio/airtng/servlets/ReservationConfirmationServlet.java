@@ -4,6 +4,7 @@ import com.twilio.sdk.verbs.TwiMLException;
 import com.twilio.sdk.verbs.TwiMLResponse;
 import org.twilio.airtng.lib.helpers.TwiMLHelper;
 import org.twilio.airtng.lib.notifications.SmsNotifier;
+import org.twilio.airtng.lib.phonenumber.Purchaser;
 import org.twilio.airtng.lib.servlets.WebAppServlet;
 import org.twilio.airtng.models.Reservation;
 import org.twilio.airtng.models.User;
@@ -20,16 +21,22 @@ public class ReservationConfirmationServlet extends WebAppServlet {
     private UserRepository userRepository;
     private ReservationRepository reservationRepository;
     private SmsNotifier smsNotifier;
+    private Purchaser phoneNumberPurchaser;
 
     public ReservationConfirmationServlet() {
-        this(new UserRepository(), new ReservationRepository(), new SmsNotifier());
+        this(new UserRepository(), new ReservationRepository(), new SmsNotifier(), new Purchaser());
     }
 
-    public ReservationConfirmationServlet(UserRepository userRepository, ReservationRepository reservationRepository, SmsNotifier smsNotifier) {
+    public ReservationConfirmationServlet(UserRepository userRepository
+            , ReservationRepository reservationRepository
+            , SmsNotifier smsNotifier
+            , Purchaser phoneNumberPurchaser) {
+
         super();
         this.userRepository = userRepository;
         this.reservationRepository = reservationRepository;
         this.smsNotifier = smsNotifier;
+        this.phoneNumberPurchaser = phoneNumberPurchaser;
     }
 
     @Override
@@ -44,10 +51,13 @@ public class ReservationConfirmationServlet extends WebAppServlet {
             User user = userRepository.findByPhoneNumber(phone);
             Reservation reservation = reservationRepository.findFirstPendantReservationsByUser(user.getId());
             if (reservation != null) {
-                if (smsContent.contains("yes") || smsContent.contains("accept"))
+                if (smsContent.contains("yes") || smsContent.contains("accept")) {
                     reservation.confirm();
-                else
+                    String purchasedNumber = phoneNumberPurchaser.buyNumber(user.getAreaCode());
+                    reservation.setAnonymousPhoneNumber(purchasedNumber);
+                } else {
                     reservation.reject();
+                }
                 reservationRepository.update(reservation);
 
                 smsResponseText = String.format("You have successfully %s the reservation", reservation.getStatus().toString());
