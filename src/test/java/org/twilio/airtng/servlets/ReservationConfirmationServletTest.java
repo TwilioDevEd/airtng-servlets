@@ -80,7 +80,6 @@ public class ReservationConfirmationServletTest extends BaseServletTest {
         Document document = getDocument(content);
 
         assertThatContentTypeIsXML(response);
-        System.out.println(content);
         assertThat(getElement(document, "Message").getValue(), is(CoreMatchers.<String>notNullValue()));
     }
 

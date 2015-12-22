@@ -54,9 +54,6 @@ public class ReservationConfirmationServlet extends WebAppServlet {
                 smsNotifier.notifyGuest(reservation);
             }
         } catch (Exception e) {
-
-            System.out.println("----------------");
-            System.out.println(e.getMessage());
         }
 
         try {
