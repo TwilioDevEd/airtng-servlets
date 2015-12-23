@@ -9,9 +9,7 @@ import org.mockito.MockitoAnnotations;
 import org.twilio.airtng.lib.notifications.SmsNotifier;
 import org.twilio.airtng.lib.phonenumber.Purchaser;
 import org.twilio.airtng.models.Reservation;
-import org.twilio.airtng.models.User;
 import org.twilio.airtng.repositories.ReservationRepository;
-import org.twilio.airtng.repositories.UserRepository;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
@@ -25,9 +23,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
-
-public class ReservationConfirmationServletTest extends BaseServletTest {
-
+public class ExchangeVoiceServletTest extends BaseServletTest {
     @Mock
     HttpServletRequest request;
 
@@ -36,9 +32,6 @@ public class ReservationConfirmationServletTest extends BaseServletTest {
 
     @Mock
     RequestDispatcher requestDispatcher;
-
-    @Mock
-    UserRepository userRepository;
 
     @Mock
     ReservationRepository reservationRepository;
@@ -55,23 +48,21 @@ public class ReservationConfirmationServletTest extends BaseServletTest {
     }
 
     @Test
-    public void postMethod_RespondWithMessage() throws Exception {
+    public void postMethod_RespondWithPlayAndDial() throws Exception {
 
         when(request.getParameter("From")).thenReturn("+1998877665");
+        when(request.getParameter("To")).thenReturn("+179853345678");
         when(request.getParameter("Body")).thenReturn("");
 
         Reservation reservation = getTestReservation();
-        User guest = reservation.getUser();
 
-        when(userRepository.findByPhoneNumber(anyString())).thenReturn(guest);
+        when(reservationRepository.findByAnonymousPhoneNumber(anyString())).thenReturn(reservation);
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         PrintWriter printWriter = new PrintWriter(output);
         when(response.getWriter()).thenReturn(printWriter);
 
-        ReservationConfirmationServlet servlet = new ReservationConfirmationServlet(userRepository,
-                reservationRepository,
-                smsNotifier, phoneNumberPurchaser);
+        ExchangeVoiceServlet servlet = new ExchangeVoiceServlet(reservationRepository);
         servlet.doPost(request, response);
 
         printWriter.flush();
@@ -80,7 +71,7 @@ public class ReservationConfirmationServletTest extends BaseServletTest {
         Document document = getDocument(content);
 
         assertThatContentTypeIsXML(response);
-        assertThat(getElement(document, "Message").getValue(), is(CoreMatchers.<String>notNullValue()));
+        assertThat(getElement(document, "Play").getValue(), is(CoreMatchers.<String>notNullValue()));
+        assertThat(getElement(document, "Dial").getValue(), is(CoreMatchers.<String>notNullValue()));
     }
-
 }

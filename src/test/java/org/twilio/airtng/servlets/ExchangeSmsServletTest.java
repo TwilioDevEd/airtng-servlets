@@ -9,9 +9,7 @@ import org.mockito.MockitoAnnotations;
 import org.twilio.airtng.lib.notifications.SmsNotifier;
 import org.twilio.airtng.lib.phonenumber.Purchaser;
 import org.twilio.airtng.models.Reservation;
-import org.twilio.airtng.models.User;
 import org.twilio.airtng.repositories.ReservationRepository;
-import org.twilio.airtng.repositories.UserRepository;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
@@ -25,8 +23,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
-
-public class ReservationConfirmationServletTest extends BaseServletTest {
+public class ExchangeSmsServletTest extends BaseServletTest {
 
     @Mock
     HttpServletRequest request;
@@ -36,9 +33,6 @@ public class ReservationConfirmationServletTest extends BaseServletTest {
 
     @Mock
     RequestDispatcher requestDispatcher;
-
-    @Mock
-    UserRepository userRepository;
 
     @Mock
     ReservationRepository reservationRepository;
@@ -58,20 +52,18 @@ public class ReservationConfirmationServletTest extends BaseServletTest {
     public void postMethod_RespondWithMessage() throws Exception {
 
         when(request.getParameter("From")).thenReturn("+1998877665");
+        when(request.getParameter("To")).thenReturn("+179853345678");
         when(request.getParameter("Body")).thenReturn("");
 
         Reservation reservation = getTestReservation();
-        User guest = reservation.getUser();
 
-        when(userRepository.findByPhoneNumber(anyString())).thenReturn(guest);
+        when(reservationRepository.findByAnonymousPhoneNumber(anyString())).thenReturn(reservation);
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         PrintWriter printWriter = new PrintWriter(output);
         when(response.getWriter()).thenReturn(printWriter);
 
-        ReservationConfirmationServlet servlet = new ReservationConfirmationServlet(userRepository,
-                reservationRepository,
-                smsNotifier, phoneNumberPurchaser);
+        ExchangeSmsServlet servlet = new ExchangeSmsServlet(reservationRepository);
         servlet.doPost(request, response);
 
         printWriter.flush();
@@ -82,5 +74,4 @@ public class ReservationConfirmationServletTest extends BaseServletTest {
         assertThatContentTypeIsXML(response);
         assertThat(getElement(document, "Message").getValue(), is(CoreMatchers.<String>notNullValue()));
     }
-
 }

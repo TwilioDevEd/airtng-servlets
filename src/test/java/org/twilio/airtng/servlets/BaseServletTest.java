@@ -6,6 +6,9 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.twilio.airtng.lib.auth.SessionManager;
 import org.twilio.airtng.lib.servlets.WebAppServlet;
+import org.twilio.airtng.models.Reservation;
+import org.twilio.airtng.models.User;
+import org.twilio.airtng.models.VacationProperty;
 import org.twilio.airtng.servlets.filters.AuthenticationFilter;
 
 import javax.servlet.FilterChain;
@@ -106,5 +109,12 @@ public abstract class BaseServletTest {
         servlet.doGet(request, response);
 
         verify(response).sendRedirect("/login");
+    }
+
+    protected Reservation getTestReservation() {
+        User host = new User("Host", "host@email.com", "password", "+1998877665", "998");
+        User guest = new User("Guest", "guest@email.com", "password", "+1566477665", "566");
+        VacationProperty vacationProperty = new VacationProperty("Property", "http://image.com/first.png", host);
+        return new Reservation("i reserve", vacationProperty, guest);
     }
 }
