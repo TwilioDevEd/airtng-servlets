@@ -2,7 +2,7 @@ CREATE TABLE reservations (
     id                     SERIAL UNIQUE NOT NULL PRIMARY KEY,
     message                VARCHAR(100)  NOT NULL,
     status                 INT2          NOT NULL,
-    anonymous_phone_number VARCHAR(15)   NOT NULL,
+    anonymous_phone_number VARCHAR(15)   NULL,
     user_id                INT4          NOT NULL,
     vacation_property_id   INT4          NOT NULL,
 

@@ -28,7 +28,6 @@ public class ExchangeVoiceServlet extends BaseExchangeServlet {
 
         String from = request.getParameter("From");
         String to = request.getParameter("To");
-        String body = request.getParameter("Body");
 
         String outgoingNumber = gatherOutgoingPhoneNumber(from, to);
 

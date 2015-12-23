@@ -24,9 +24,7 @@ public class BaseExchangeServlet extends WebAppServlet {
 
         if (Objects.equals(reservation.getUser().getPhoneNumber(), incomingPhoneNumber)) {
             outgoingPhoneNumber = reservation.getVacationProperty().getUser().getPhoneNumber();
-        }
-
-        if (Objects.equals(reservation.getVacationProperty().getUser().getPhoneNumber(), incomingPhoneNumber)) {
+        } else {
             outgoingPhoneNumber = reservation.getUser().getPhoneNumber();
         }
 

@@ -40,6 +40,7 @@
             <core:when test="${authenticated}">
                 <form action="/logout" method="POST" id="logoutForm" style="display:none;"></form>
                 <li><img src="/images/spock.png" alt="Spock"/></li>
+                <li><a href="/reservations" id="reservationsLink">Reservations</a></li>
                 <li><a href="/properties-new" id="newPropertyLink">New Vacation property</a></li>
                 <li><a href="javascript:document.getElementById('logoutForm').submit()" id="logoutLink">Log out</a></li>
             </core:when>

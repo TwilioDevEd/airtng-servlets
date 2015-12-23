@@ -43,13 +43,30 @@
         <servlet-name>reservation</servlet-name>
         <servlet-class>org.twilio.airtng.servlets.ReservationServlet</servlet-class>
     </servlet>
+
+    <servlet>
+        <servlet-name>reservations</servlet-name>
+        <servlet-class>org.twilio.airtng.servlets.ReservationsServlet</servlet-class>
+    </servlet>
+
     <servlet>
         <servlet-name>logout</servlet-name>
         <servlet-class>org.twilio.airtng.servlets.LogoutServlet</servlet-class>
     </servlet>
+
     <servlet>
-        <servlet-name>/reservationConfirmation</servlet-name>
+        <servlet-name>reservationConfirmation</servlet-name>
         <servlet-class>org.twilio.airtng.servlets.ReservationConfirmationServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>smsExchange</servlet-name>
+        <servlet-class>org.twilio.airtng.servlets.ExchangeSmsServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>voiceExchange</servlet-name>
+        <servlet-class>org.twilio.airtng.servlets.ExchangeVoiceServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -77,12 +94,25 @@
         <url-pattern>/reservation</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>reservations</servlet-name>
+        <url-pattern>/reservations</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>/reservationConfirmation</servlet-name>
+        <servlet-name>reservationConfirmation</servlet-name>
         <url-pattern>/reservation-confirmation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>smsExchange</servlet-name>
+        <url-pattern>/exchange-sms</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>voiceExchange</servlet-name>
+        <url-pattern>/exchange-voice</url-pattern>
     </servlet-mapping>
 
     <filter>
@@ -96,5 +126,6 @@
         <url-pattern>/properties</url-pattern>
         <url-pattern>/properties-new</url-pattern>
         <url-pattern>/reservation</url-pattern>
+        <url-pattern>/reservations</url-pattern>
     </filter-mapping>
 </web-app>

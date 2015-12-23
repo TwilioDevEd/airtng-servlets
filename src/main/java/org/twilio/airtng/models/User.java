@@ -126,4 +126,11 @@ public class User {
         }
     }
 
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public List<VacationProperty> getVacationProperties() {
+        return vacationProperties;
+    }
 }

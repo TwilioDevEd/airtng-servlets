@@ -80,4 +80,8 @@ public class VacationProperty {
             reservation.setVacationProperty(null);
         }
     }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
 }
