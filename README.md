@@ -32,7 +32,7 @@ Learn how to automate your workflow using Twilio's REST API and Twilio SMS. This
 1. Create the database.
 
  ```bash
- $ createdb marketing_notifications
+ $ createdb airtng-servlets
 
  ```
 
@@ -44,7 +44,7 @@ Learn how to automate your workflow using Twilio's REST API and Twilio SMS. This
      ```
    export DB_USERNAME=your_db_username
    export DB_PASSWORD=your_db_password
-   export JDBC_URL=jdbc:postgresql://localhost:5432/marketing_notifications
+   export JDBC_URL=jdbc:postgresql://localhost:5432/airtng-servlets
    export TWILIO_ACCOUNT_SID=your_account_sid
    export TWILIO_AUTH_TOKEN=your_account_token
    export TWILIO_PHONE_NUMBER=your_twilio_number
