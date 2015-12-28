@@ -34,7 +34,7 @@ public class ExchangeSmsServlet extends BaseExchangeServlet {
         message.setTo(outgoingNumber);
         try {
             twiMLResponse.append(message);
-            respondTwiml(response, twiMLResponse);
+            respondTwiML(response, twiMLResponse);
         } catch (TwiMLException e) {
             e.printStackTrace();
         }

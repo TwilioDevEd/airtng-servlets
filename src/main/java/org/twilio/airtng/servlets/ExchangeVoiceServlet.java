@@ -37,7 +37,7 @@ public class ExchangeVoiceServlet extends BaseExchangeServlet {
         try {
             twiMLResponse.append(play);
             twiMLResponse.append(dial);
-            respondTwiml(response, twiMLResponse);
+            respondTwiML(response, twiMLResponse);
         } catch (TwiMLException e) {
             e.printStackTrace();
         }

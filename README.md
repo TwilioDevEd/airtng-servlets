@@ -68,6 +68,7 @@ http://<your-ngrok-subdomain>.ngrok.io/exchange-voice
    export TWILIO_ACCOUNT_SID=your_account_sid
    export TWILIO_AUTH_TOKEN=your_account_token
    export TWILIO_PHONE_NUMBER=your_twilio_number
+   export APPLICATION_SID=your_application_sid
      ```
 
   Once you have edited the `.environment` file, if you are using a UNIX operating system,

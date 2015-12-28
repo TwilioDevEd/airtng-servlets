@@ -31,7 +31,7 @@ public class BaseExchangeServlet extends WebAppServlet {
         return outgoingPhoneNumber;
     }
 
-    protected void respondTwiml(HttpServletResponse response, TwiMLResponse twiMLResponse)
+    protected void respondTwiML(HttpServletResponse response, TwiMLResponse twiMLResponse)
             throws TwiMLException, IOException {
         response.setContentType("text/xml");
         response.getWriter().write(twiMLResponse.toXML());
