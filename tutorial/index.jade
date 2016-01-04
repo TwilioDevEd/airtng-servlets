@@ -115,7 +115,7 @@
       , which uses, under the hood, another abstraction called `Sender`.
 
       This one is where we use [Twilio's Rest
-      API](//twilio-php.readthedocs.org/en/latest/usage/rest/messages.html#sending-a-message)
+      API](https://www.twilio.com/docs/quickstart/java/sms/sending-via-rest)
       to send a sms message to the _host_, using your [Twilio phone
       number](//www.twilio.com/user/account/phone-numbers/incoming).
 
@@ -154,7 +154,7 @@
       [ngrok](//ngrok.com/). So, your url for the sms web hook on your number
       should look like this:
       ```
-      http://<subdomain>.ngrok.io/reservation/incoming
+      http://<subdomain>.ngrok.io/reservation-confirmation
       ```
 
       An incoming request from Twilio comes with some helpful
@@ -168,7 +168,7 @@
       the decision the host made, regarding the property reservation..
 
       ## TwiML Response
-      Finally, we'll use [Twilio's TwiML](//twilio-php.readthedocs.org/en/latest/usage/twiml.html)
+      Finally, we'll use [Twilio's TwiML](//www.twilio.com/docs/quickstart/java/sms/hello-monkey)
       as a response to Twilio's server
       instructing it to send sms notification message to the _host_, specifically the
       [Message verb](//twilio-php.readthedocs.org/en/latest/usage/twiml.html#message)
@@ -185,7 +185,7 @@
       and guest could communicate through a shared Twilio phone number.
       Hmmm... maybe we'll have to put together a tutorial on that!
 
-      If you're a PHP developer working with Twilio, you might enjoy these
+      If you're a Java developer working with Twilio, you might enjoy these
       other tutorials:
 
       [**SMS and MMS notifications**](//www.twilio.com/docs/tutorials/walkthrough/server-notifications/java/servlets)

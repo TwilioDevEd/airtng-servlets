@@ -89,7 +89,7 @@ the host when the reservation is created.</p>
 of said property that someone has made a reservation. For this purpose we use
 an abstraction called <a href="//github.com/TwilioDevEd/airtng-servlets/blob/eac1e32c4d2eb2071ef00f4e6b7b78b33cdcc541/src/main/java/org/twilio/airtng/lib/notifications/SmsNotifier.java"><code>SmsNotifier</code></a>
 , which uses, under the hood, another abstraction called <code>Sender</code>.</p>
-<p>This one is where we use <a href="//twilio-php.readthedocs.org/en/latest/usage/rest/messages.html#sending-a-message">Twilio&#39;s Rest
+<p>This one is where we use <a href="https://www.twilio.com/docs/quickstart/java/sms/sending-via-rest">Twilio&#39;s Rest
 API</a>
 to send a sms message to the <em>host</em>, using your <a href="//www.twilio.com/user/account/phone-numbers/incoming">Twilio phone
 number</a>.</p>
@@ -121,7 +121,7 @@ application&#39;s end point in the route <code>/reservation-confirmation</code>.
 to expose your development machine to the outside world using
 <a href="//ngrok.com/">ngrok</a>. So, your url for the sms web hook on your number
 should look like this:</p>
-<pre><code>http://&lt;subdomain&gt;.ngrok.io/reservation/incoming
+<pre><code>http://&lt;subdomain&gt;.ngrok.io/reservation-confirmation
 </code></pre><p>An incoming request from Twilio comes with some helpful
 <a href="//www.twilio.com/docs/api/twiml/sms/twilio_request#request-parameters">parameters</a>.
 These include the <code>From</code> phone number and the message <code>Body</code>.</p>
@@ -141,7 +141,7 @@ from TwiML to instruct Twilio&#39;s server that it should send the message.</p>
 <p>To improve upon this you could add anonymous communications so that the host
 and guest could communicate through a shared Twilio phone number.
 Hmmm... maybe we&#39;ll have to put together a tutorial on that!</p>
-<p>If you&#39;re a PHP developer working with Twilio, you might enjoy these
+<p>If you&#39;re a Java developer working with Twilio, you might enjoy these
 other tutorials:</p>
 <p><a href="//www.twilio.com/docs/tutorials/walkthrough/server-notifications/java/servlets"><strong>SMS and MMS notifications</strong></a></p>
 <p>Build a server notification system that will alert all administrators via SMS when a server outage occurs.</p>
