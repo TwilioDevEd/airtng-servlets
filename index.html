@@ -64,17 +64,13 @@ many users through those reservations.</p>
 <p>The <code>Reservation</code> model is at the center of the workflow for this application.
 It is responsible for keeping track of:</p>
 <ul>
-<li><p>the <code>VacationProperty</code> it is associated with</p>
+<li><p>the <code>vacationProperty</code> it is associated with</p>
 </li>
-<li><p>the <code>User</code> who owns that vacation property (the host)</p>
-</li>
-<li><p>the guest phone number</p>
+<li><p>the guest <code>user</code> who performed the reservation</p>
 </li>
 <li><p>status of the reservation</p>
 </li>
 </ul>
-<p>Since the reservation can only have one guest in this example, we simplified
-the model by assigning phone_number directly on the model.</p>
 </div><div data-title="Reservation Creation" data-file="src/main/java/org/twilio/airtng/servlets/ReservationServlet.java" data-highlight="45-67" class="step"><h2 id="reservation-creation">Reservation creation</h2>
 <p>The reservation creation form holds only one field, the message that will
 be sent to the <em>host</em> user when reserving one of his properties. The rest
@@ -107,7 +103,7 @@ and host that the reservation information is updated accordingly.</p>
 <li><a href="//www.twilio.com/docs/api/rest">Twilio Rest API</a></li>
 <li><a href="//www.twilio.com/docs/java/install">Twilio Java helper library</a></li>
 </ul>
-</div><div data-title="Reservation Creation" data-file="src/main/java/org/twilio/airtng/servlets/ReservationConfirmationServlet.java" data-highlight="35-74" class="step"><h2 id="handling-incoming-messages">Handling Incoming Messages</h2>
+</div><div data-title="Reservation Creation" data-file="src/main/java/org/twilio/airtng/servlets/ReservationConfirmationServlet.java" data-highlight="35-72" class="step"><h2 id="handling-incoming-messages">Handling Incoming Messages</h2>
 <p>Let&#39;s take a closer look at the <code>ReservationConfirmation</code> servlet. This servlet
 handles our incoming Twilio request and does three things:</p>
 <ol>

@@ -75,16 +75,11 @@
 
       The `Reservation` model is at the center of the workflow for this application.
       It is responsible for keeping track of:
-        * the `VacationProperty` it is associated with
+        * the `vacationProperty` it is associated with
 
-        * the `User` who owns that vacation property (the host)
-
-        * the guest phone number
+        * the guest `user` who performed the reservation
 
         * status of the reservation
-
-      Since the reservation can only have one guest in this example, we simplified
-      the model by assigning phone_number directly on the model.
 
   .step(data-title="Reservation Creation",
     data-file='src/main/java/org/twilio/airtng/servlets/ReservationServlet.java',
