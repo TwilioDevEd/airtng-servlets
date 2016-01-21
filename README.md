@@ -88,7 +88,7 @@ http://<your-ngrok-subdomain>.ngrok.io/exchange-voice
 
 1. Run the application.
   ```bash
-  $ ./gradew jettyRun
+  $ ./gradlew jettyRun
   ```
 
 1. Check it out at [http://localhost:8080](http://localhost:8080)
