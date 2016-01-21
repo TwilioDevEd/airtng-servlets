@@ -67,7 +67,7 @@ Learn how to automate your workflow using Twilio's REST API and Twilio SMS. This
 
 1. Run the application.
   ```bash
-  $ ./gradew jettyRun
+  $ ./gradlew jettyRun
   ```
 
 1. Check it out at [http://localhost:8080](http://localhost:8080)
