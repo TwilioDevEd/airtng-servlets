@@ -7,9 +7,9 @@ Learn how to automate your workflow using Twilio's REST API and Twilio SMS. This
 
 1. You will need to configure Twilio to send requests to your application when SMS are received.
 
-   You will need to provision at least one Twilio number with sms capabilities so the application's users can make property reservations. You can buy a number [right here](https://www.twilio.com/user/account/phone-numbers/search). Once you have a number you need to configure your number to work with your application. Open [the number management page](https://www.twilio.com/user/account/phone-numbers/incoming) and open a number's configuration by clicking on it.
+   You will need to provision at least one Twilio number with sms capabilities so the application's users can make property reservations. You can buy a number [here](https://www.twilio.com/user/account/phone-numbers/search). Once you have a number,  you need to configure your number to work with your application. Open [the number management page](https://www.twilio.com/user/account/phone-numbers/incoming) and open a number's configuration by clicking on it.
 
-   Remember that the number where you change the _SMS webhook_ must be the same one you set on the `TwilioPhoneNumber` setting.
+   Remember that the number you change the _SMS webhook_ for must be the same one you set on the `TwilioPhoneNumber` setting.
 
    ![Configure Voice](http://howtodocs.s3.amazonaws.com/twilio-number-config-all-med.gif)
 
