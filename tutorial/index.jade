@@ -146,6 +146,11 @@
 
       1. Responds to the host and sends notification to the guest.
 
+
+  .step(data-title="Reservation Creation",
+    data-file='src/main/java/org/twilio/airtng/servlets/ReservationConfirmationServlet.java',
+    data-highlight='35-72')
+    :markdown
       ## Incoming Twilio Request
       In your [Twilio number](//www.twilio.com/user/account/phone-numbers/incoming)
       you must setup the sms web hook to call your
@@ -167,6 +172,10 @@
       use the `SmsNotifier` abstraction to send an SMS to the _guest_ notifying him the
       the decision the host made, regarding the property reservation..
 
+  .step(data-title="Reservation Creation",
+    data-file='src/main/java/org/twilio/airtng/servlets/ReservationConfirmationServlet.java',
+    data-highlight='35-72')
+    :markdown
       ## TwiML Response
       Finally, we'll use [Twilio's TwiML](//www.twilio.com/docs/quickstart/java/sms/hello-monkey)
       as a response to Twilio's server
