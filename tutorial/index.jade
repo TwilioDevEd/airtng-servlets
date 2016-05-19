@@ -1,7 +1,7 @@
 .chapter(data-title='Workflow Automation')
   .step(data-title='Introduction', data-file='src/main/webapp/WEB-INF/web.xml', data-format='xml')
     :markdown
-      ## Workflow Automation - Vacation Rental example
+      ## Workflow Automation - Vacation Rental Example
 
       ![Airtng](http://howtodocs.s3.amazonaws.com/airtng-screen.png)
 
@@ -31,10 +31,10 @@
       Let's get started! Click the right arrow to move on to the next step of
       the tutorial.
 
-  .step(data-title='Session users', data-file='src/main/java/org/twilio/airtng/models/User.java',
+  .step(data-title='Session Users', data-file='src/main/java/org/twilio/airtng/models/User.java',
     data-highlight='7-48')
     :markdown
-      ## Users and session management
+      ## Users and Session Management
 
       For this workflow to work, we need to have users created in our application,
       and allow them to log in into airtng.
@@ -85,7 +85,7 @@
     data-file='src/main/java/org/twilio/airtng/servlets/ReservationServlet.java',
     data-highlight='45-67')
     :markdown
-      ## Reservation creation
+      ## Reservation Creation
 
       The reservation creation form holds only one field, the message that will
       be sent to the _host_ user when reserving one of his properties. The rest
@@ -107,7 +107,7 @@
     data-file='src/main/java/org/twilio/airtng/lib/sms/Sender.java',
     data-highlight='24-32')
     :markdown
-      ## Notifying the host
+      ## Notifying the Host
 
       When a reservation is created for a property, we want to notify the owner
       of said property that someone has made a reservation. For this purpose we use
