@@ -9,7 +9,7 @@
 .wrapper {
   height:100%;
   width:100%;
-}</style><link rel="shortcut icon" href="//twilio.com/bundles/marketing/img/favicons/favicon.ico"><link rel="apple-touch-icon" href="//twilio.com/bundles/marketing/img/favicons/favicon_57.png"><link rel="apple-touch-icon" sizes="72x72" href="//twilio.com/bundles/marketing/img/favicons/favicon_72.png"><link rel="apple-touch-icon" sizes="114x114" href="//twilio.com/bundles/marketing/img/favicons/favicon_114.png"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"><link rel="stylesheet" href="viewsaurus.css"></head><body><div class="wrapper"><div id="viewsaurus" data-title="Workflow Automation"><div class="saurus-panes"><div class="saurus-prose"><div class="saurus-prose-header"><div class="title-outer"><span class="step-title">Workflow Automation</span></div></div><div class="saurus-nav-buttons"><div class="saurus-nav-button nav-overview"><div class="saurus-nav-button-inner"><i class="fa fa-fw fa-list"></i></div><div class="nav-divider"></div></div><div class="saurus-nav-button nav-previous"><div class="saurus-nav-button-inner"><a href=""> <i class="fa fa-fw fa-play fa-rotate-180"></i></a></div><div class="nav-divider"></div></div><div class="saurus-nav-button nav-next clickable"><div class="saurus-nav-button-inner"><a href="#1"> <i class="fa fa-fw fa-play"></i></a></div></div><div class="saurus-next-title"><span class="next-title-inner"></span></div></div><div class="saurus-progress-bar"></div><div class="saurus-start"><p>Increase your rate of response by automating the workflows that are key to your business. In this tutorial, learn how to build a ready-for-scale automated SMS workflow, for a vacation rental company.</p><a href="#0">Start Tutorial</a></div><div class="saurus-content"><div data-title="Workflow Automation" class="chapter"><div data-title="Introduction" data-file="src/main/webapp/WEB-INF/web.xml" data-format="xml" class="step"><h2 id="workflow-automation-vacation-rental-example">Workflow Automation - Vacation Rental example</h2>
+}</style><link rel="shortcut icon" href="//twilio.com/bundles/marketing/img/favicons/favicon.ico"><link rel="apple-touch-icon" href="//twilio.com/bundles/marketing/img/favicons/favicon_57.png"><link rel="apple-touch-icon" sizes="72x72" href="//twilio.com/bundles/marketing/img/favicons/favicon_72.png"><link rel="apple-touch-icon" sizes="114x114" href="//twilio.com/bundles/marketing/img/favicons/favicon_114.png"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"><link rel="stylesheet" href="viewsaurus.css"></head><body><div class="wrapper"><div id="viewsaurus" data-title="Workflow Automation"><div class="saurus-panes"><div class="saurus-prose"><div class="saurus-prose-header"><div class="title-outer"><span class="step-title">Workflow Automation</span></div></div><div class="saurus-nav-buttons"><div class="saurus-nav-button nav-overview"><div class="saurus-nav-button-inner"><i class="fa fa-fw fa-list"></i></div><div class="nav-divider"></div></div><div class="saurus-nav-button nav-previous"><div class="saurus-nav-button-inner"><a href=""> <i class="fa fa-fw fa-play fa-rotate-180"></i></a></div><div class="nav-divider"></div></div><div class="saurus-nav-button nav-next clickable"><div class="saurus-nav-button-inner"><a href="#1"> <i class="fa fa-fw fa-play"></i></a></div></div><div class="saurus-next-title"><span class="next-title-inner"></span></div></div><div class="saurus-progress-bar"></div><div class="saurus-start"><p>Increase your rate of response by automating the workflows that are key to your business. In this tutorial, learn how to build a ready-for-scale automated SMS workflow, for a vacation rental company.</p><a href="#0">Start Tutorial</a></div><div class="saurus-content"><div data-title="Workflow Automation" class="chapter"><div data-title="Introduction" data-file="src/main/webapp/WEB-INF/web.xml" data-format="xml" class="step"><h2 id="workflow-automation-vacation-rental-example">Workflow Automation - Vacation Rental Example</h2>
 <p><img src="http://howtodocs.s3.amazonaws.com/airtng-screen.png" alt="Airtng"></p>
 <p>At its core this use-case is about enabling your service providers
 (agents, hosts, customer service reps, administrators, etc) to better
@@ -35,7 +35,7 @@ as our web technology stack:</p>
 </ul>
 <p>Let&#39;s get started! Click the right arrow to move on to the next step of
 the tutorial.</p>
-</div><div data-title="Session users" data-file="src/main/java/org/twilio/airtng/models/User.java" data-highlight="7-48" class="step"><h2 id="users-and-session-management">Users and session management</h2>
+</div><div data-title="Session Users" data-file="src/main/java/org/twilio/airtng/models/User.java" data-highlight="7-48" class="step"><h2 id="users-and-session-management">Users and Session Management</h2>
 <p>For this workflow to work, we need to have users created in our application,
 and allow them to log in into airtng.
 Each user will hold his personal information, which will be required when the
@@ -71,7 +71,7 @@ It is responsible for keeping track of:</p>
 <li><p>status of the reservation</p>
 </li>
 </ul>
-</div><div data-title="Reservation Creation" data-file="src/main/java/org/twilio/airtng/servlets/ReservationServlet.java" data-highlight="45-67" class="step"><h2 id="reservation-creation">Reservation creation</h2>
+</div><div data-title="Reservation Creation" data-file="src/main/java/org/twilio/airtng/servlets/ReservationServlet.java" data-highlight="45-67" class="step"><h2 id="reservation-creation">Reservation Creation</h2>
 <p>The reservation creation form holds only one field, the message that will
 be sent to the <em>host</em> user when reserving one of his properties. The rest
 of the information necessary to create a reservation is taken from the user
@@ -84,7 +84,7 @@ replies with a <code>confirm</code> or <code>reject</code> response, the system 
 the <em>host</em> is referring to.</p>
 <p>In the next step we&#39;ll take a look at how the sms notification is sent to
 the host when the reservation is created.</p>
-</div><div data-title="Reservation Creation" data-file="src/main/java/org/twilio/airtng/lib/sms/Sender.java" data-highlight="24-32" class="step"><h2 id="notifying-the-host">Notifying the host</h2>
+</div><div data-title="Reservation Creation" data-file="src/main/java/org/twilio/airtng/lib/sms/Sender.java" data-highlight="24-32" class="step"><h2 id="notifying-the-host">Notifying the Host</h2>
 <p>When a reservation is created for a property, we want to notify the owner
 of said property that someone has made a reservation. For this purpose we use
 an abstraction called <a href="//github.com/TwilioDevEd/airtng-servlets/blob/eac1e32c4d2eb2071ef00f4e6b7b78b33cdcc541/src/main/java/org/twilio/airtng/lib/notifications/SmsNotifier.java"><code>SmsNotifier</code></a>
@@ -114,7 +114,7 @@ handles our incoming Twilio request and does three things:</p>
 <li><p>Responds to the host and sends notification to the guest.</p>
 </li>
 </ol>
-<h2 id="incoming-twilio-request">Incoming Twilio Request</h2>
+</div><div data-title="Reservation Creation" data-file="src/main/java/org/twilio/airtng/servlets/ReservationConfirmationServlet.java" data-highlight="35-72" class="step"><h2 id="incoming-twilio-request">Incoming Twilio Request</h2>
 <p>In your <a href="//www.twilio.com/user/account/phone-numbers/incoming">Twilio number</a>
 you must setup the sms web hook to call your
 application&#39;s end point in the route <code>/reservation-confirmation</code>. Remember to
@@ -130,7 +130,7 @@ pending reservations. If she does, we&#39;ll use the message body to check if sh
 accepted or rejected the reservation. Then, we update the reservation status and
 use the <code>SmsNotifier</code> abstraction to send an SMS to the <em>guest</em> notifying him the
 the decision the host made, regarding the property reservation..</p>
-<h2 id="twiml-response">TwiML Response</h2>
+</div><div data-title="Reservation Creation" data-file="src/main/java/org/twilio/airtng/servlets/ReservationConfirmationServlet.java" data-highlight="35-72" class="step"><h2 id="twiml-response">TwiML Response</h2>
 <p>Finally, we&#39;ll use <a href="//www.twilio.com/docs/quickstart/java/sms/hello-monkey">Twilio&#39;s TwiML</a>
 as a response to Twilio&#39;s server
 instructing it to send sms notification message to the <em>host</em>, specifically the
