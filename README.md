@@ -15,7 +15,7 @@ Learn how to automate your workflow using Twilio's REST API and Twilio SMS. This
 
    ![Configure Voice](http://howtodocs.s3.amazonaws.com/twilio-number-config-all-med.gif)
 
-   To start using `ngrok` on our project you'll have to execute to the following line in the _command prompt_.
+   To start using `ngrok` in our project you'll have to execute the following line in the _command prompt_.
 
    ```
    ngrok http 8080 -host-header="localhost:8080"
