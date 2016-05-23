@@ -4,7 +4,7 @@
 
 # Airtng App: Part 2 - Workflow Automation with Twilio - Java | Servlets
 
-[![Build status](https://travis-ci.org/TwilioDevEd/airtng-servlets.svg)](https://travis-ci.org/TwilioDevEd/airtng-servlets)
+[![Build status](https://travis-ci.org/TwilioDevEd/airtng-servlets.svg?branch=masked-numbers)](https://travis-ci.org/TwilioDevEd/airtng-servlets?branch=masked-numbers)
 
 Protect your customers' privacy by creating a seamless interaction by provisioning Twilio numbers on the fly. Route all voice calls and messages through your very own 3rd party. This allows you to control the interaction between your customers, while putting your customer's privacy first.
 
