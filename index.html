@@ -35,11 +35,11 @@ as our web technology stack:</p>
 </ul>
 <p>Let&#39;s get started! Click the right arrow to move on to the next step of
 the tutorial.</p>
-</div><div data-title="Session Users" data-file="src/main/java/org/twilio/airtng/models/User.java" data-highlight="7-48" class="step"><h2 id="users-and-session-management">Users and Session Management</h2>
+</div><div data-title="Users and Session Management" data-file="src/main/java/org/twilio/airtng/models/User.java" data-highlight="7-48" class="step"><h2 id="users-and-session-management">Users and Session Management</h2>
 <p>For this workflow to work, we need to have users created in our application,
 and allow them to log in into airtng.
 Each user will hold his personal information, which will be required when the
-moment to send sms notifications come.</p>
+moment to send sms notifications comes.</p>
 <p><strong>See Also:</strong></p>
 <ul>
 <li><p><a href="//flywaydb.org/documentation/gradle/migrate.html">Executing Flyway Migrations with Gradle</a></p>
@@ -48,19 +48,19 @@ moment to send sms notifications come.</p>
 </li>
 <li><a href="//docs.oracle.com/javaee/6/tutorial/doc/bnbqa.html">JPA Entities Definition</a></li>
 </ul>
-</div><div data-title="Vacation Property Model" data-file="src/main/java/org/twilio/airtng/models/VacationProperty.java" data-highlight="7-37" class="step"><h2 id="vacation-property">Vacation Property</h2>
-<p>In order to build a true vacation rentals company we&#39;ll need a way to
-create the property listings.</p>
+</div><div data-title="Vacation Property Model" data-file="src/main/java/org/twilio/airtng/models/VacationProperty.java" data-highlight="7-37" class="step"><h2 id="vacation-property-model">Vacation Property Model</h2>
+<p>In order to build a true vacation rental company we&#39;ll need a way to
+create the property&#39;s listing.</p>
 <p>The <code>VacationProperty</code> model belongs to the <code>User</code> who created it
 (we&#39;ll call this user the <em>host</em> moving forward) and contains only two
 properties: a <code>description</code> and an <code>image_url</code>.</p>
-<p>It has two associations in that it has many reservations and therefore
-many users through those reservations.</p>
+<p>The model has two associations implemented, there are many reservations in it,
+and many users can go through those reservations.</p>
 <p><strong>See Also:</strong></p>
 <ul>
 <li><a href="//docs.oracle.com/javaee/6/tutorial/doc/bnbqa.html#bnbqh">JPA Entities Relations</a></li>
 </ul>
-</div><div data-title="Reservation Model" data-file="src/main/java/org/twilio/airtng/models/Reservation.java" data-highlight="5-37" class="step"><h2 id="the-reservation-model">The Reservation Model</h2>
+</div><div data-title="The Reservation Model" data-file="src/main/java/org/twilio/airtng/models/Reservation.java" data-highlight="5-37" class="step"><h2 id="the-reservation-model">The Reservation Model</h2>
 <p>The <code>Reservation</code> model is at the center of the workflow for this application.
 It is responsible for keeping track of:</p>
 <ul>
@@ -75,27 +75,27 @@ It is responsible for keeping track of:</p>
 <p>The reservation creation form holds only one field, the message that will
 be sent to the <em>host</em> user when reserving one of his properties. The rest
 of the information necessary to create a reservation is taken from the user
-that is logged in into the system and also the relationship between a property
+that is logged into the system and also the relationship between a property
 and it&#39;s owner. Have a look at our base generic
 <a href="//github.com/TwilioDevEd/airtng-servlets/blob/eac1e32c4d2eb2071ef00f4e6b7b78b33cdcc541/src/main/java/org/twilio/airtng/repositories/Repository.java#L53-L66"><code>Repository</code></a>,
-which is in charge of handling entities insertion.</p>
+which is in charge of handling entities&#39; insertion.</p>
 <p>A reservation is created with a default status <code>pending</code>, so when the <em>host</em>
-replies with a <code>confirm</code> or <code>reject</code> response, the system knows which reservation
+replies with a <code>confirm</code> or <code>reject</code> response. The system knows which reservation
 the <em>host</em> is referring to.</p>
 <p>In the next step we&#39;ll take a look at how the sms notification is sent to
 the host when the reservation is created.</p>
-</div><div data-title="Reservation Creation" data-file="src/main/java/org/twilio/airtng/lib/sms/Sender.java" data-highlight="24-32" class="step"><h2 id="notifying-the-host">Notifying the Host</h2>
+</div><div data-title="Notifying the Host" data-file="src/main/java/org/twilio/airtng/lib/sms/Sender.java" data-highlight="24-32" class="step"><h2 id="notifying-the-host">Notifying the Host</h2>
 <p>When a reservation is created for a property, we want to notify the owner
-of said property that someone has made a reservation. For this purpose we use
+that someone has made a reservation. For this purpose we use
 an abstraction called <a href="//github.com/TwilioDevEd/airtng-servlets/blob/eac1e32c4d2eb2071ef00f4e6b7b78b33cdcc541/src/main/java/org/twilio/airtng/lib/notifications/SmsNotifier.java"><code>SmsNotifier</code></a>
-, which uses, under the hood, another abstraction called <code>Sender</code>.</p>
-<p>This one is where we use <a href="https://www.twilio.com/docs/quickstart/java/sms/sending-via-rest">Twilio&#39;s Rest
+, which uses, under the hood, another abstraction called <code>Sender</code>.
+Here is where we use <a href="https://www.twilio.com/docs/quickstart/java/sms/sending-via-rest">Twilio&#39;s Rest
 API</a>
-to send a sms message to the <em>host</em>, using your <a href="//www.twilio.com/user/account/phone-numbers/incoming">Twilio phone
+to send an sms message to the <em>host</em>, using your <a href="//www.twilio.com/user/account/phone-numbers/incoming">Twilio phone
 number</a>.</p>
 <p>As you can see, sending sms messages using Twilio is as easy as the code
 to your right shows. Now we just have to wait for the host to send an sms
-response accepting or rejecting the reservation, so we can notify the guest
+response, accepting or rejecting the reservation, so we can notify the guest
 and host that the reservation information is updated accordingly.</p>
 <p>The next step shows how to handle and configure the host&#39;s sms response.</p>
 <p><strong>See Also:</strong></p>
@@ -103,7 +103,7 @@ and host that the reservation information is updated accordingly.</p>
 <li><a href="//www.twilio.com/docs/api/rest">Twilio Rest API</a></li>
 <li><a href="//www.twilio.com/docs/java/install">Twilio Java helper library</a></li>
 </ul>
-</div><div data-title="Reservation Creation" data-file="src/main/java/org/twilio/airtng/servlets/ReservationConfirmationServlet.java" data-highlight="35-72" class="step"><h2 id="handling-incoming-messages">Handling Incoming Messages</h2>
+</div><div data-title="Handling Incoming Messages" data-file="src/main/java/org/twilio/airtng/servlets/ReservationConfirmationServlet.java" data-highlight="35-72" class="step"><h2 id="handling-incoming-messages">Handling Incoming Messages</h2>
 <p>Let&#39;s take a closer look at the <code>ReservationConfirmation</code> servlet. This servlet
 handles our incoming Twilio request and does three things:</p>
 <ol>
@@ -114,7 +114,7 @@ handles our incoming Twilio request and does three things:</p>
 <li><p>Responds to the host and sends notification to the guest.</p>
 </li>
 </ol>
-</div><div data-title="Reservation Creation" data-file="src/main/java/org/twilio/airtng/servlets/ReservationConfirmationServlet.java" data-highlight="35-72" class="step"><h2 id="incoming-twilio-request">Incoming Twilio Request</h2>
+</div><div data-title="Incoming Twilio Request" data-file="src/main/java/org/twilio/airtng/servlets/ReservationConfirmationServlet.java" data-highlight="35-72" class="step"><h2 id="incoming-twilio-request">Incoming Twilio Request</h2>
 <p>In your <a href="//www.twilio.com/user/account/phone-numbers/incoming">Twilio number</a>
 you must setup the sms web hook to call your
 application&#39;s end point in the route <code>/reservation-confirmation</code>. Remember to
@@ -125,12 +125,12 @@ should look like this:</p>
 </code></pre><p>An incoming request from Twilio comes with some helpful
 <a href="//www.twilio.com/docs/api/twiml/sms/twilio_request#request-parameters">parameters</a>.
 These include the <code>From</code> phone number and the message <code>Body</code>.</p>
-<p>We&#39;ll use the <code>From</code> parameter to lookup the host and check if she has any
-pending reservations. If she does, we&#39;ll use the message body to check if she
-accepted or rejected the reservation. Then, we update the reservation status and
+<p>We&#39;ll use the <code>From</code> parameter to lookup the host and check if he/she has any
+pending reservations. If he/she does, we&#39;ll use the message body to check if there are
+accepted or rejected reservations. Then, we update the reservation status and
 use the <code>SmsNotifier</code> abstraction to send an SMS to the <em>guest</em> notifying him the
 the decision the host made, regarding the property reservation..</p>
-</div><div data-title="Reservation Creation" data-file="src/main/java/org/twilio/airtng/servlets/ReservationConfirmationServlet.java" data-highlight="35-72" class="step"><h2 id="twiml-response">TwiML Response</h2>
+</div><div data-title="TwiML Response" data-file="src/main/java/org/twilio/airtng/servlets/ReservationConfirmationServlet.java" data-highlight="35-72" class="step"><h2 id="twiml-response">TwiML Response</h2>
 <p>Finally, we&#39;ll use <a href="//www.twilio.com/docs/quickstart/java/sms/hello-monkey">Twilio&#39;s TwiML</a>
 as a response to Twilio&#39;s server
 instructing it to send sms notification message to the <em>host</em>, specifically the
@@ -148,9 +148,8 @@ other tutorials:</p>
 <p><a href="//www.twilio.com/docs/tutorials/walkthrough/click-to-call/java/servlets"><strong>Click To Call</strong></a></p>
 <p>Convert web traffic into phone calls with the click of a button.</p>
 <h3 id="did-this-help-">Did this help?</h3>
-<p>Thanks for checking out this tutorial! If you have any feedback to share
-with us, we&#39;d love to hear it. Tweet
-<a href="http://twitter.com/twilio">@twilio</a> to let us know what you think.</p>
+<p>Thanks for checking this tutorial out! If you have any feedback to share
+with us, we&#39;d love to hear it. <a href="mailto:deved-oss@twilio.com">Contact the Twilio Developer Education Team</a> to let us know what you think.</p>
 <p><img src="http://howtodocs.s3.amazonaws.com/airtng-screen2.png" alt="Airtng"></p>
 </div></div>
 <div class="saurus-files" style="display:none;"><textarea class="saurus-file" data-file="src/main/webapp/WEB-INF/web.xml" data-mode="xml">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KCjx3ZWItYXBwIHhtbG5zPSJodHRwOi8vamF2YS5zdW4uY29tL3htbC9ucy9qYXZhZWUiCiAgICAgICAgIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiCiAgICAgICAgIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL2phdmEuc3VuLmNvbS94bWwvbnMvamF2YWVlIGh0dHA6Ly9qYXZhLnN1bi5jb20veG1sL25zL2phdmFlZS93ZWItYXBwXzNfMC54c2QiCiAgICAgICAgIHZlcnNpb249IjMuMCI+CgogICAgPGNvbnRleHQtcGFyYW0+CiAgICAgICAgPHBhcmFtLW5hbWU+anNwLWluaGVyaXRhbmNlLXByZWZpeDwvcGFyYW0tbmFtZT4KICAgICAgICA8cGFyYW0tdmFsdWU+L1dFQi1JTkYvbGF5b3V0cy88L3BhcmFtLXZhbHVlPgogICAgPC9jb250ZXh0LXBhcmFtPgoKICAgIDxjb250ZXh0LXBhcmFtPgogICAgICAgIDxwYXJhbS1uYW1lPmpzcC1pbmhlcml0YW5jZS1zdWZmaXg8L3BhcmFtLW5hbWU+CiAgICAgICAgPHBhcmFtLXZhbHVlPi5qc3A8L3BhcmFtLXZhbHVlPgogICAgPC9jb250ZXh0LXBhcmFtPgoKICAgIDx3ZWxjb21lLWZpbGUtbGlzdD4KICAgICAgICA8d2VsY29tZS1maWxlPnJlZ2lzdHJhdGlvbi5qc3A8L3dlbGNvbWUtZmlsZT4KICAgIDwvd2VsY29tZS1maWxlLWxpc3Q+CgogICAgPHNlcnZsZXQ+CiAgICAgICAgPHNlcnZsZXQtbmFtZT5yZWdpc3RyYXRpb248L3NlcnZsZXQtbmFtZT4KICAgICAgICA8c2VydmxldC1jbGFzcz5vcmcudHdpbGlvLmFpcnRuZy5zZXJ2bGV0cy5SZWdpc3RyYXRpb25TZXJ2bGV0PC9zZXJ2bGV0LWNsYXNzPgogICAgPC9zZXJ2bGV0PgogICAgPHNlcnZsZXQ+CiAgICAgICAgPHNlcnZsZXQtbmFtZT5sb2dpbjwvc2VydmxldC1uYW1lPgogICAgICAgIDxzZXJ2bGV0LWNsYXNzPm9yZy50d2lsaW8uYWlydG5nLnNlcnZsZXRzLkxvZ2luU2VydmxldDwvc2VydmxldC1jbGFzcz4KICAgIDwvc2VydmxldD4KICAgIDxzZXJ2bGV0PgogICAgICAgIDxzZXJ2bGV0LW5hbWU+aG9tZTwvc2VydmxldC1uYW1lPgogICAgICAgIDxzZXJ2bGV0LWNsYXNzPm9yZy50d2lsaW8uYWlydG5nLnNlcnZsZXRzLkhvbWVTZXJ2bGV0PC9zZXJ2bGV0LWNsYXNzPgogICAgPC9zZXJ2bGV0PgogICAgPHNlcnZsZXQ+CiAgICAgICAgPHNlcnZsZXQtbmFtZT52YWNhdGlvblByb3BlcnRpZXM8L3NlcnZsZXQtbmFtZT4KICAgICAgICA8c2VydmxldC1jbGFzcz5vcmcudHdpbGlvLmFpcnRuZy5zZXJ2bGV0cy5WYWNhdGlvblByb3BlcnRpZXNTZXJ2bGV0PC9zZXJ2bGV0LWNsYXNzPgogICAgPC9zZXJ2bGV0PgogICAgPHNlcnZsZXQ+CiAgICAgICAgPHNlcnZsZXQtbmFtZT5uZXdWYWNhdGlvblByb3BlcnRpZXM8L3NlcnZsZXQtbmFtZT4KICAgICAgICA8c2VydmxldC1jbGFzcz5vcmcudHdpbGlvLmFpcnRuZy5zZXJ2bGV0cy5OZXdWYWNhdGlvblByb3BlcnRpZXNTZXJ2bGV0PC9zZXJ2bGV0LWNsYXNzPgogICAgPC9zZXJ2bGV0PgogICAgPHNlcnZsZXQ+CiAgICAgICAgPHNlcnZsZXQtbmFtZT5yZXNlcnZhdGlvbjwvc2VydmxldC1uYW1lPgogICAgICAgIDxzZXJ2bGV0LWNsYXNzPm9yZy50d2lsaW8uYWlydG5nLnNlcnZsZXRzLlJlc2VydmF0aW9uU2VydmxldDwvc2VydmxldC1jbGFzcz4KICAgIDwvc2VydmxldD4KICAgIDxzZXJ2bGV0PgogICAgICAgIDxzZXJ2bGV0LW5hbWU+bG9nb3V0PC9zZXJ2bGV0LW5hbWU+CiAgICAgICAgPHNlcnZsZXQtY2xhc3M+b3JnLnR3aWxpby5haXJ0bmcuc2VydmxldHMuTG9nb3V0U2VydmxldDwvc2VydmxldC1jbGFzcz4KICAgIDwvc2VydmxldD4KICAgIDxzZXJ2bGV0PgogICAgICAgIDxzZXJ2bGV0LW5hbWU+L3Jlc2VydmF0aW9uQ29uZmlybWF0aW9uPC9zZXJ2bGV0LW5hbWU+CiAgICAgICAgPHNlcnZsZXQtY2xhc3M+b3JnLnR3aWxpby5haXJ0bmcuc2VydmxldHMuUmVzZXJ2YXRpb25Db25maXJtYXRpb25TZXJ2bGV0PC9zZXJ2bGV0LWNsYXNzPgogICAgPC9zZXJ2bGV0PgoKICAgIDxzZXJ2bGV0LW1hcHBpbmc+CiAgICAgICAgPHNlcnZsZXQtbmFtZT5yZWdpc3RyYXRpb248L3NlcnZsZXQtbmFtZT4KICAgICAgICA8dXJsLXBhdHRlcm4+L3JlZ2lzdGVyPC91cmwtcGF0dGVybj4KICAgIDwvc2VydmxldC1tYXBwaW5nPgogICAgPHNlcnZsZXQtbWFwcGluZz4KICAgICAgICA8c2VydmxldC1uYW1lPmxvZ2luPC9zZXJ2bGV0LW5hbWU+CiAgICAgICAgPHVybC1wYXR0ZXJuPi9sb2dpbjwvdXJsLXBhdHRlcm4+CiAgICA8L3NlcnZsZXQtbWFwcGluZz4KICAgIDxzZXJ2bGV0LW1hcHBpbmc+CiAgICAgICAgPHNlcnZsZXQtbmFtZT5ob21lPC9zZXJ2bGV0LW5hbWU+CiAgICAgICAgPHVybC1wYXR0ZXJuPi9ob21lPC91cmwtcGF0dGVybj4KICAgIDwvc2VydmxldC1tYXBwaW5nPgogICAgPHNlcnZsZXQtbWFwcGluZz4KICAgICAgICA8c2VydmxldC1uYW1lPnZhY2F0aW9uUHJvcGVydGllczwvc2VydmxldC1uYW1lPgogICAgICAgIDx1cmwtcGF0dGVybj4vcHJvcGVydGllczwvdXJsLXBhdHRlcm4+CiAgICA8L3NlcnZsZXQtbWFwcGluZz4KICAgIDxzZXJ2bGV0LW1hcHBpbmc+CiAgICAgICAgPHNlcnZsZXQtbmFtZT5uZXdWYWNhdGlvblByb3BlcnRpZXM8L3NlcnZsZXQtbmFtZT4KICAgICAgICA8dXJsLXBhdHRlcm4+L3Byb3BlcnRpZXMtbmV3PC91cmwtcGF0dGVybj4KICAgIDwvc2VydmxldC1tYXBwaW5nPgogICAgPHNlcnZsZXQtbWFwcGluZz4KICAgICAgICA8c2VydmxldC1uYW1lPnJlc2VydmF0aW9uPC9zZXJ2bGV0LW5hbWU+CiAgICAgICAgPHVybC1wYXR0ZXJuPi9yZXNlcnZhdGlvbjwvdXJsLXBhdHRlcm4+CiAgICA8L3NlcnZsZXQtbWFwcGluZz4KICAgIDxzZXJ2bGV0LW1hcHBpbmc+CiAgICAgICAgPHNlcnZsZXQtbmFtZT5sb2dvdXQ8L3NlcnZsZXQtbmFtZT4KICAgICAgICA8dXJsLXBhdHRlcm4+L2xvZ291dDwvdXJsLXBhdHRlcm4+CiAgICA8L3NlcnZsZXQtbWFwcGluZz4KICAgIDxzZXJ2bGV0LW1hcHBpbmc+CiAgICAgICAgPHNlcnZsZXQtbmFtZT4vcmVzZXJ2YXRpb25Db25maXJtYXRpb248L3NlcnZsZXQtbmFtZT4KICAgICAgICA8dXJsLXBhdHRlcm4+L3Jlc2VydmF0aW9uLWNvbmZpcm1hdGlvbjwvdXJsLXBhdHRlcm4+CiAgICA8L3NlcnZsZXQtbWFwcGluZz4KCiAgICA8ZmlsdGVyPgogICAgICAgIDxmaWx0ZXItbmFtZT5BdXRoRmlsdGVyPC9maWx0ZXItbmFtZT4KICAgICAgICA8ZmlsdGVyLWNsYXNzPm9yZy50d2lsaW8uYWlydG5nLnNlcnZsZXRzLmZpbHRlcnMuQXV0aGVudGljYXRpb25GaWx0ZXI8L2ZpbHRlci1jbGFzcz4KICAgIDwvZmlsdGVyPgogICAgPGZpbHRlci1tYXBwaW5nPgogICAgICAgIDxmaWx0ZXItbmFtZT5BdXRoRmlsdGVyPC9maWx0ZXItbmFtZT4KICAgICAgICA8dXJsLXBhdHRlcm4+L2hvbWU8L3VybC1wYXR0ZXJuPgogICAgICAgIDx1cmwtcGF0dGVybj4vcmVzZXJ2YXRpb248L3VybC1wYXR0ZXJuPgogICAgICAgIDx1cmwtcGF0dGVybj4vcHJvcGVydGllczwvdXJsLXBhdHRlcm4+CiAgICAgICAgPHVybC1wYXR0ZXJuPi9wcm9wZXJ0aWVzLW5ldzwvdXJsLXBhdHRlcm4+CiAgICAgICAgPHVybC1wYXR0ZXJuPi9yZXNlcnZhdGlvbjwvdXJsLXBhdHRlcm4+CiAgICA8L2ZpbHRlci1tYXBwaW5nPgo8L3dlYi1hcHA+</textarea>
