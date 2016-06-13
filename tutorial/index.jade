@@ -9,10 +9,10 @@
       (agents, hosts, customer service reps, administrators, etc) to better
       serve their customer. To illustrate a very real-world example of this
       use-case we will implement a webapp for finding and booking vacation
-      properties--we're calling it Airtng. Here's how it works:
+      properties we're calling it Airtng. Here's how it works:
 
-      1. A host creates a vacation property
-      2. A guest requests a reservation on that property
+      1. A host creates a vacation property.
+      2. A guest requests a reservation on that property.
       3. The host receives an SMS notifying them of the recent reservation request. The host can either Accept or Reject the reservation.
       4. The guest is notified that their reservation was either accepted or rejected.
 
@@ -39,11 +39,12 @@
       For this workflow to work, we need to have users created in our application,
       and allow them to log in into airtng.
       Each user will hold his personal information, which will be required when the
-      moment to send sms notifications comes.
+      moment to send SMS notifications comes.
+
+      ---
 
       **See Also:**
       * [Executing Flyway Migrations with Gradle](//flywaydb.org/documentation/gradle/migrate.html)
-
       * [JDBC Basics](//docs.oracle.com/javase/tutorial/jdbc/basics/index.html)
       * [JPA Entities Definition](//docs.oracle.com/javaee/6/tutorial/doc/bnbqa.html)
 
@@ -59,10 +60,12 @@
 
       The `VacationProperty` model belongs to the `User` who created it
       (we'll call this user the _host_ moving forward) and contains only two
-      properties: a `description` and an `image_url`.
+      properties: a `description` and an `imageUrl`.
 
       The model has two associations implemented, there are many reservations in it,
       and many users can go through those reservations.
+
+      ---
 
       **See Also:**
       * [JPA Entities Relations](//docs.oracle.com/javaee/6/tutorial/doc/bnbqa.html#bnbqh)
@@ -77,11 +80,9 @@
       The `Reservation` model is at the center of the workflow for this application.
       It is responsible for keeping track of:
 
-        * the `vacationProperty` it is associated with
-
-        * the guest `user` who performed the reservation
-
-        * status of the reservation
+        * The `vacationProperty` it is associated with.
+        * The guest `user` who performed the reservation.
+        * The status of the reservation.
 
   .step(data-title="Reservation Creation",
     data-file='src/main/java/org/twilio/airtng/servlets/ReservationServlet.java',
@@ -101,7 +102,7 @@
       replies with a `confirm` or `reject` response. The system knows which reservation
       the _host_ is referring to.
 
-      In the next step we'll take a look at how the sms notification is sent to
+      In the next step we'll take a look at how the SMS notification is sent to
       the host when the reservation is created.
 
 
@@ -117,15 +118,17 @@
       , which uses, under the hood, another abstraction called `Sender`.
       Here is where we use [Twilio's Rest
       API](https://www.twilio.com/docs/quickstart/java/sms/sending-via-rest)
-      to send an sms message to the _host_, using your [Twilio phone
+      to send an SMS message to the _host_, using your [Twilio phone
       number](//www.twilio.com/user/account/phone-numbers/incoming).
 
-      As you can see, sending sms messages using Twilio is as easy as the code
-      to your right shows. Now we just have to wait for the host to send an sms
+      As you can see, sending SMS messages using Twilio is as easy as the code
+      to your right shows. Now we just have to wait for the host to send an SMS
       response, accepting or rejecting the reservation, so we can notify the guest
       and host that the reservation information is updated accordingly.
 
-      The next step shows how to handle and configure the host's sms response.
+      The next step shows how to handle and configure the host's SMS response.
+
+      ---
 
       **See Also:**
       * [Twilio Rest API](//www.twilio.com/docs/api/rest)
@@ -141,10 +144,8 @@
       Let's take a closer look at the `ReservationConfirmation` servlet. This servlet
       handles our incoming Twilio request and does three things:
 
-      1. Checks for a pending reservation from the incoming user
-
-      1. Updates the status of the reservation
-
+      1. Checks for a pending reservation from the incoming user.
+      1. Updates the status of the reservation.
       1. Responds to the host and sends notification to the guest.
 
 
@@ -155,14 +156,13 @@
       ## Incoming Twilio Request
 
       In your [Twilio number](//www.twilio.com/user/account/phone-numbers/incoming)
-      you must setup the sms web hook to call your
+      you must setup the SMS webhook to call your
       application's end point in the route `/reservation-confirmation`. Remember to
       to expose your development machine to the outside world using
-      [ngrok](//ngrok.com/). So, your url for the sms web hook on your number
+      [ngrok](//ngrok.com/). So, your URL for the SMS webhook on your number
       should look like this:
-      ```
-      http://<subdomain>.ngrok.io/reservation-confirmation
-      ```
+
+      `http://<subdomain>.ngrok.io/reservation-confirmation`
 
       An incoming request from Twilio comes with some helpful
       [parameters](//www.twilio.com/docs/api/twiml/sms/twilio_request#request-parameters).
@@ -172,7 +172,7 @@
       pending reservations. If he/she does, we'll use the message body to check if there are
       accepted or rejected reservations. Then, we update the reservation status and
       use the `SmsNotifier` abstraction to send an SMS to the _guest_ notifying him the
-      the decision the host made, regarding the property reservation..
+      the decision the host made, regarding the property reservation.
 
   .step(data-title="TwiML Response",
     data-file='src/main/java/org/twilio/airtng/servlets/ReservationConfirmationServlet.java',
@@ -180,11 +180,14 @@
     :markdown
       ## TwiML Response
 
-      Finally, we'll use [Twilio's TwiML](//www.twilio.com/docs/quickstart/java/sms/hello-monkey)
-      as a response to Twilio's server
-      instructing it to send sms notification message to the _host_, specifically the
-      [Message verb](//www.twilio.com/docs/quickstart/java/sms/replying-to-sms-messages)
-      from TwiML to instruct Twilio's server that it should send the message.
+      Finally, we'll use Twilio's TwiML as a response to Twilio's server
+      instructing it to send SMS notification message to the _host_, specifically the
+      [`Message`](//www.twilio.com/docs/quickstart/java/sms/replying-to-sms-messages)
+      verb from TwiML to instruct Twilio's server that it should send the message.
+
+      ---
+      **See Also:**
+      * [Java Quickstart: Respond to an incoming SMS](https://www.twilio.com/docs/quickstart/java/sms/hello-monkey)
 
 
   .step(data-title='Finish')
@@ -195,7 +198,7 @@
 
       To improve upon this you could add anonymous communications so that the host
       and guest could communicate through a shared Twilio phone number.
-      Hmmm... maybe we'll have to put together a tutorial on that!
+      Hmm... maybe we'll have to put together a tutorial on that!
 
       If you're a Java developer working with Twilio, you might enjoy these
       other tutorials:
