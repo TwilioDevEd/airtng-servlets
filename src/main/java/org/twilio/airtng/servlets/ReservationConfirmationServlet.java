@@ -1,7 +1,7 @@
 package org.twilio.airtng.servlets;
 
-import com.twilio.sdk.verbs.TwiMLException;
-import com.twilio.sdk.verbs.TwiMLResponse;
+import com.twilio.twiml.MessagingResponse;
+import com.twilio.twiml.TwiMLException;
 import org.twilio.airtng.lib.helpers.TwiMLHelper;
 import org.twilio.airtng.lib.notifications.SmsNotifier;
 import org.twilio.airtng.lib.servlets.WebAppServlet;
@@ -53,20 +53,18 @@ public class ReservationConfirmationServlet extends WebAppServlet {
                 smsResponseText = String.format("You have successfully %s the reservation", reservation.getStatus().toString());
                 smsNotifier.notifyGuest(reservation);
             }
-        } catch (Exception e) {
-        }
 
-        try {
-            respondSms(response, smsResponseText);
-        } catch (TwiMLException e) {
-            e.printStackTrace();
+        respondSms(response, smsResponseText);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
     private void respondSms(HttpServletResponse response, String message)
-            throws TwiMLException, IOException {
-        TwiMLResponse twiMLResponse = TwiMLHelper.buildSmsRespond(message);
+            throws IOException, TwiMLException {
+        MessagingResponse twiMLResponse = TwiMLHelper.buildSmsRespond(message);
         response.setContentType("text/xml");
-        response.getWriter().write(twiMLResponse.toXML());
+        response.getWriter().write(twiMLResponse.toXml());
     }
 }
