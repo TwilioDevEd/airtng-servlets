@@ -1,7 +1,7 @@
 package org.twilio.airtng.servlets;
 
-import com.twilio.sdk.verbs.TwiMLException;
-import com.twilio.sdk.verbs.TwiMLResponse;
+import com.twilio.twiml.TwiML;
+import com.twilio.twiml.TwiMLException;
 import org.twilio.airtng.lib.servlets.WebAppServlet;
 import org.twilio.airtng.models.Reservation;
 import org.twilio.airtng.repositories.ReservationRepository;
@@ -31,9 +31,13 @@ public class BaseExchangeServlet extends WebAppServlet {
         return outgoingPhoneNumber;
     }
 
-    protected void respondTwiML(HttpServletResponse response, TwiMLResponse twiMLResponse)
-            throws TwiMLException, IOException {
+    protected void respondTwiML(HttpServletResponse response, TwiML twiMLResponse)
+            throws IOException {
         response.setContentType("text/xml");
-        response.getWriter().write(twiMLResponse.toXML());
+        try {
+            response.getWriter().write(twiMLResponse.toXml());
+        } catch (TwiMLException e) {
+            e.printStackTrace();
+        }
     }
 }

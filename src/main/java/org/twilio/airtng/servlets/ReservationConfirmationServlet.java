@@ -1,8 +1,9 @@
 package org.twilio.airtng.servlets;
 
-import com.twilio.sdk.verbs.TwiMLException;
-import com.twilio.sdk.verbs.TwiMLResponse;
-import org.twilio.airtng.lib.helpers.TwiMLHelper;
+import com.twilio.twiml.Body;
+import com.twilio.twiml.Message;
+import com.twilio.twiml.MessagingResponse;
+import com.twilio.twiml.TwiMLException;
 import org.twilio.airtng.lib.notifications.SmsNotifier;
 import org.twilio.airtng.lib.phonenumber.Purchaser;
 import org.twilio.airtng.lib.servlets.WebAppServlet;
@@ -53,7 +54,7 @@ public class ReservationConfirmationServlet extends WebAppServlet {
             if (reservation != null) {
                 if (smsContent.contains("yes") || smsContent.contains("accept")) {
                     reservation.confirm();
-                    String purchasedNumber = phoneNumberPurchaser.buyNumber(user.getAreaCode());
+                    String purchasedNumber = phoneNumberPurchaser.buyNumber(Integer.valueOf(user.getAreaCode()));
                     reservation.setAnonymousPhoneNumber(purchasedNumber);
                 } else {
                     reservation.reject();
@@ -75,8 +76,10 @@ public class ReservationConfirmationServlet extends WebAppServlet {
 
     private void respondSms(HttpServletResponse response, String message)
             throws TwiMLException, IOException {
-        TwiMLResponse twiMLResponse = TwiMLHelper.buildSmsRespond(message);
+        MessagingResponse messagingResponse = new MessagingResponse.Builder()
+                .message(new Message.Builder().body(new Body(message)).build())
+                .build();
         response.setContentType("text/xml");
-        response.getWriter().write(twiMLResponse.toXML());
+        response.getWriter().write(messagingResponse.toXml());
     }
 }
