@@ -1,9 +1,9 @@
 package org.twilio.airtng.servlets;
 
-import com.twilio.sdk.verbs.Dial;
-import com.twilio.sdk.verbs.Play;
-import com.twilio.sdk.verbs.TwiMLException;
-import com.twilio.sdk.verbs.TwiMLResponse;
+import com.twilio.twiml.Dial;
+import com.twilio.twiml.Number;
+import com.twilio.twiml.Play;
+import com.twilio.twiml.VoiceResponse;
 import org.twilio.airtng.repositories.ReservationRepository;
 
 import javax.servlet.ServletException;
@@ -31,16 +31,12 @@ public class ExchangeVoiceServlet extends BaseExchangeServlet {
 
         String outgoingNumber = gatherOutgoingPhoneNumber(from, to);
 
-        TwiMLResponse twiMLResponse = new TwiMLResponse();
-        Play play = new Play("http://howtodocs.s3.amazonaws.com/howdy-tng.mp3");
-        Dial dial = new Dial(outgoingNumber);
-        try {
-            twiMLResponse.append(play);
-            twiMLResponse.append(dial);
-            respondTwiML(response, twiMLResponse);
-        } catch (TwiMLException e) {
-            e.printStackTrace();
-        }
+        VoiceResponse voiceResponse = new VoiceResponse.Builder()
+                .play(new Play.Builder("http://howtodocs.s3.amazonaws.com/howdy-tng.mp3").build())
+                .dial(new Dial.Builder().number(new Number.Builder(outgoingNumber).build()).build())
+                .build();
+
+        respondTwiML(response, voiceResponse);
     }
 
 }
