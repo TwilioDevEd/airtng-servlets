@@ -20,11 +20,11 @@ public class Purchaser {
     }
 
     public String buyNumber(Integer areaCode) {
-        ResourceSet<Local> availableNumbersForGivenArea = Local.read("US")
-                .byAreaCode(areaCode)
-                .bySmsEnabled(true)
-                .byVoiceEnabled(true)
-                .execute();
+        ResourceSet<Local> availableNumbersForGivenArea = Local.reader("US")
+                .setAreaCode(areaCode)
+                .setSmsEnabled(true)
+                .setVoiceEnabled(true)
+                .read();
 
         if (availableNumbersForGivenArea.iterator().hasNext()) {
             PhoneNumber availableNumber = createBuyNumber(
@@ -33,10 +33,10 @@ public class Purchaser {
 
             return availableNumber.toString();
         } else {
-            ResourceSet<Local> generalAvailableNumbers = Local.read("US")
-                    .bySmsEnabled(true)
-                    .byVoiceEnabled(true)
-                    .execute();
+            ResourceSet<Local> generalAvailableNumbers = Local.reader("US")
+                    .setSmsEnabled(true)
+                    .setVoiceEnabled(true)
+                    .read();
             if (generalAvailableNumbers.iterator().hasNext()) {
                 PhoneNumber availableNumber = createBuyNumber(
                         generalAvailableNumbers.iterator().next().getPhoneNumber()
@@ -52,6 +52,6 @@ public class Purchaser {
         return new IncomingPhoneNumberCreator(phoneNumber)
                 .setSmsApplicationSid(Config.getApplicationSid())
                 .setVoiceApplicationSid(Config.getApplicationSid())
-                .execute(client).getPhoneNumber();
+                .create(client).getPhoneNumber();
     }
 }
