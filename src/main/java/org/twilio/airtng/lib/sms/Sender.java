@@ -22,7 +22,7 @@ public class Sender {
                 new PhoneNumber(to),
                 new PhoneNumber(Config.getPhoneNumber()),
                 message
-        ).execute(client);
+        ).create(client);
     }
 
 }
