@@ -23,6 +23,7 @@ repositories {
 }
 
 dependencies {
+    def logbackVersion='1.2.2'
     compile 'javax.servlet:javax.servlet-api:3.1.0'
     compile 'javax.servlet:jstl:1.2'
     compile 'kr.pe.kwonnam.jsp:jsp-template-inheritance:0.3.RELEASE'
@@ -30,6 +31,8 @@ dependencies {
     compile 'org.postgresql:postgresql:9.4-1206-jdbc42'
     compile 'org.jasypt:jasypt:1.9.0'
     compile 'com.twilio.sdk:twilio:7.0.0-rc-29'
+    compile "ch.qos.logback:logback-classic:${logbackVersion}"
+    compile "ch.qos.logback:logback-access:${logbackVersion}"
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-all:1.10.19'
