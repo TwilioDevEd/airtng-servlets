@@ -29,53 +29,58 @@ Learn how to automate your workflow using Twilio's REST API and Twilio SMS. This
 
 1. Clone this repository and `cd` into it.
 
- ```
- git clone git@github.com:TwilioDevEd/airntg-servlets.git
- ```
+    ```bash
+    git clone git@github.com:TwilioDevEd/airntg-servlets.git
+    ```
 
 1. Create the database.
 
- ```bash
- $ createdb airtng-servlets
+    ```bash
+    createdb airtng-servlets
+    ```
 
- ```
+    _The application uses PostgreSQL as the persistence layer. You should install
+    it if you don't have it already. The easiest way is by
+    using [Postgres.app](http://postgresapp.com/)._
 
-  _The application uses PostgreSQL as the persistence layer. You should install
-  it if you don't have it already. The easiest way is by
-  using [Postgres.app](http://postgresapp.com/)._
+1. Copy the `.env.example` file:
 
-1. Edit the sample configuration file `.environment` to match your database and Twilio's configuration.
+    ```bash
+    cp .env.example .env
+    ```
+
+    Then edit it to match your database and Twilio's configuration.
 
      ```
-   export DB_USERNAME=your_db_username
-   export DB_PASSWORD=your_db_password
-   export JDBC_URL=jdbc:postgresql://localhost:5432/airtng-servlets
-   export TWILIO_ACCOUNT_SID=your_account_sid
-   export TWILIO_AUTH_TOKEN=your_account_token
-   export TWILIO_PHONE_NUMBER=your_twilio_number
+     export DB_USERNAME=your_db_username
+     export DB_PASSWORD=your_db_password
+     export JDBC_URL=jdbc:postgresql://localhost:5432/airtng-servlets
+     export TWILIO_ACCOUNT_SID=your_account_sid
+     export TWILIO_AUTH_TOKEN=your_account_token
+     export TWILIO_PHONE_NUMBER=your_twilio_number
      ```
 
-  Once you have edited the `.environment` file, if you are using a UNIX operating system,
-  just use the `source` command to load the variables into your environment.
+    Once edited, and if you are using a UNIX operating system,
+    just use the `source` command to load the variables into your environment.
 
-  ```bash
-  $ source .environment
-  ```
+    ```bash
+    source .env
+    ```
 
-  _If you are using a different operating system, make sure that all the
-  variables from the `.environment` file are loaded into your environment._
+    _If you are using a different operating system, make sure that all the
+    variables from the `.environment` file are loaded into your environment._
 
 1. Execute the migrations.
 
-  ```bash
-  $ ./gradlew flywayMigrate
-  ```
+    ```bash
+    ./gradlew flywayMigrate
+    ```
 
 1. Run the application.
 
-  ```bash
-  $ ./gradlew jettyRun
-  ```
+    ```bash
+    ./gradlew jettyRun
+    ```
 
 1. Check it out at [http://localhost:8080](http://localhost:8080)
 
