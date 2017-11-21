@@ -1,8 +1,8 @@
 package org.twilio.airtng.servlets;
 
-import com.twilio.twiml.Body;
-import com.twilio.twiml.Message;
 import com.twilio.twiml.MessagingResponse;
+import com.twilio.twiml.messaging.Body;
+import com.twilio.twiml.messaging.Message;
 import org.twilio.airtng.repositories.ReservationRepository;
 
 import javax.servlet.ServletException;
@@ -32,7 +32,9 @@ public class ExchangeSmsServlet extends BaseExchangeServlet {
         String outgoingNumber = gatherOutgoingPhoneNumber(from, to);
 
         MessagingResponse messagingResponse = new MessagingResponse.Builder()
-                .message(new Message.Builder().body(new Body(body)).to(outgoingNumber).build())
+                .message(new Message.Builder()
+                        .body(new Body.Builder(body).build()).to(outgoingNumber)
+                        .build())
                 .build();
 
         respondTwiML(response, messagingResponse);

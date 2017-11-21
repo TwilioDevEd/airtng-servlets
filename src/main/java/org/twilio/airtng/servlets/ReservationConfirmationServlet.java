@@ -1,9 +1,9 @@
 package org.twilio.airtng.servlets;
 
-import com.twilio.twiml.Body;
-import com.twilio.twiml.Message;
 import com.twilio.twiml.MessagingResponse;
 import com.twilio.twiml.TwiMLException;
+import com.twilio.twiml.messaging.Body;
+import com.twilio.twiml.messaging.Message;
 import org.twilio.airtng.lib.notifications.SmsNotifier;
 import org.twilio.airtng.lib.phonenumber.Purchaser;
 import org.twilio.airtng.lib.servlets.WebAppServlet;
@@ -77,7 +77,9 @@ public class ReservationConfirmationServlet extends WebAppServlet {
     private void respondSms(HttpServletResponse response, String message)
             throws TwiMLException, IOException {
         MessagingResponse messagingResponse = new MessagingResponse.Builder()
-                .message(new Message.Builder().body(new Body(message)).build())
+                .message(new Message.Builder()
+                        .body(new Body.Builder(message).build())
+                        .build())
                 .build();
         response.setContentType("text/xml");
         response.getWriter().write(messagingResponse.toXml());
