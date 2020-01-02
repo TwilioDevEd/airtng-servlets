@@ -34,7 +34,7 @@ dependencies {
     compile "ch.qos.logback:logback-classic:${logbackVersion}"
     compile "ch.qos.logback:logback-access:${logbackVersion}"
 
-    testCompile 'junit:junit:4.12'
+    testCompile 'junit:junit:4.13'
     testCompile 'org.mockito:mockito-all:1.10.19'
     testCompile 'org.jdom:jdom:2.0.2'
     testCompile 'pl.pragmatists:JUnitParams:1.0.4'
