@@ -1,6 +1,9 @@
 # AirTNG App: Part 1 - Workflow Automation with Twilio - Java | Servlets
 [![Build status](https://travis-ci.org/TwilioDevEd/airtng-servlets.svg)](https://travis-ci.org/TwilioDevEd/airtng-servlets)
 
+> We are currently in the process of updating this sample template. If you are encountering any issues with the sample, please open an issue at [github.com/twilio-labs/code-exchange/issues](https://github.com/twilio-labs/code-exchange/issues) and we'll try to help you.
+
+
 Learn how to automate your workflow using Twilio's REST API and Twilio SMS. This example app is a vacation rental site, where the host can confirm a reservation via SMS.
 
 [Read the full tutorial here](https://www.twilio.com/docs/tutorials/walkthrough/workflow-automation/java/servlets)!
