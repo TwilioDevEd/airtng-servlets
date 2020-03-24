@@ -1,47 +1,40 @@
+plugins {
+    id 'java'
+    id "org.gretty" version "3.0.1"
+    id "org.flywaydb.flyway" version "6.3.2"
+}
+
 group 'org.example'
 version '1.0'
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'org.postgresql:postgresql:9.4-1206-jdbc42'
-        classpath 'org.flywaydb:flyway-gradle-plugin:3.2.1'
-    }
-}
-
-apply plugin: 'java'
-apply plugin: 'jetty'
-apply plugin: 'org.flywaydb.flyway'
-
-jettyRun.contextPath = '';
+gretty.contextPath = '';
 sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
 dependencies {
-    def logbackVersion='1.2.2'
-    compile 'javax.servlet:javax.servlet-api:3.1.0'
+    def logbackVersion='1.2.3'
+    compile 'javax.servlet:javax.servlet-api:4.0.1'
     compile 'javax.servlet:jstl:1.2'
     compile 'kr.pe.kwonnam.jsp:jsp-template-inheritance:0.3.RELEASE'
-    compile 'org.eclipse.persistence:eclipselink:2.6.1'
+    compile 'org.eclipse.persistence:eclipselink:2.7.6'
     compile 'org.postgresql:postgresql:9.4-1206-jdbc42'
-    compile 'org.jasypt:jasypt:1.9.0'
-    compile 'com.twilio.sdk:twilio:7.16.0'
+    compile 'org.jasypt:jasypt:1.9.3'
+    compile 'com.twilio.sdk:twilio:7.48.0'
     compile "ch.qos.logback:logback-classic:${logbackVersion}"
     compile "ch.qos.logback:logback-access:${logbackVersion}"
 
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-all:1.10.19'
+    testCompile 'junit:junit:4.13'
+    testCompile 'org.mockito:mockito-core:3.3.3'
     testCompile 'org.jdom:jdom:2.0.2'
-    testCompile 'pl.pragmatists:JUnitParams:1.0.4'
+    testCompile 'pl.pragmatists:JUnitParams:1.1.1'
 }
 
 flyway {
     user = "$System.env.DB_USERNAME"
     password = "$System.env.DB_PASSWORD"
     url = "$System.env.JDBC_URL"
+    baselineOnMigrate = true
 }

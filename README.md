@@ -16,7 +16,7 @@ Learn how to automate your workflow using Twilio's REST API and Twilio SMS. This
 
    Remember that the number you change the _SMS webhook_ for must be the same one you set on the `TwilioPhoneNumber` setting.
 
-   ![Configure Voice](http://howtodocs.s3.amazonaws.com/twilio-number-config-all-med.gif)
+   ![Configure Messaging](webhook.png)
 
    To start using `ngrok` in our project you'll have to execute the following line in the _command prompt_.
 
@@ -82,7 +82,7 @@ Learn how to automate your workflow using Twilio's REST API and Twilio SMS. This
 1. Run the application.
 
     ```bash
-    ./gradlew jettyRun
+    ./gradlew appRun
     ```
 
 1. Check it out at [http://localhost:8080](http://localhost:8080)
@@ -94,5 +94,6 @@ To let our Twilio Phone number use the callback endpoint we exposed our developm
 ## Meta
 
 * No warranty expressed or implied. Software is as is. Diggity.
+* The CodeExchange repository can be found [here](https://github.com/twilio-labs/code-exchange/).
 * [MIT License](http://www.opensource.org/licenses/mit-license.html)
 * Lovingly crafted by Twilio Developer Education.

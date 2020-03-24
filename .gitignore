@@ -5,3 +5,8 @@ build/
 *.iml
 .env
 classes/
+.classpath
+.project
+.settings
+.factorypath
+.vscode
