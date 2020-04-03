@@ -17,7 +17,7 @@
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="text" class="form-control" name="email" id="email" placeholder="Email"
-                               value="${email}">
+                               value="${email}" required>
                         <span class="text-danger">${emailError}</span>
                         <span class="text-danger">${emailInvalidError}</span>
                         <span class="text-danger">${loginError}</span>
@@ -25,7 +25,7 @@
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" name="password" id="password" value="${password}"
-                               placeholder="Password">
+                               placeholder="Password" required>
                         <span class="text-danger">${passwordError}</span>
                     </div>
                 </div>

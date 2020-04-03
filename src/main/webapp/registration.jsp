@@ -15,19 +15,19 @@
                 <div class="form-group">
                     <label for="name">Tell us your name:</label>
                     <input type="text" class="form-control" name="name" id="name" placeholder="Zingelbert Bembledack"
-                           value="${name}">
+                           value="${name}" required>
                     <span class="text-danger">${nameError}</span>
                 </div>
                 <div class="form-group">
                     <label for="email">Enter Your E-mail Address:</label>
                     <input type="text" class="form-control" name="email" id="email" placeholder="you@yourdomain.com"
-                           value="${email}">
+                           value="${email}" required>
                     <span class="text-danger">${emailError}</span>
                     <span class="text-danger">${emailInvalidError}</span>
                 </div>
                 <div class="form-group">
                     <label for="password">Enter a password:</label>
-                    <input type="password" class="form-control" name="password" id="password">
+                    <input type="password" class="form-control" name="password" id="password" required>
                     <span class="text-danger">${passwordError}</span>
                 </div>
                 <div class="form-group">
@@ -39,7 +39,7 @@
                 <div class="form-group">
                     <label for="phoneNumber">Phone number:</label>
                     <input type="number" class="form-control" name="phoneNumber" id="phoneNumber"
-                           value="${phoneNumber}">
+                           value="${phoneNumber}" required>
                     <span class="text-danger">${phoneNumberError}</span>
                 </div>
                 <button class="btn btn-primary">Sign up</button>
