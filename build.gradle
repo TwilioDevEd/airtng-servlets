@@ -30,7 +30,7 @@ dependencies {
     compile 'org.eclipse.persistence:eclipselink:2.6.1'
     compile 'org.postgresql:postgresql:9.4-1206-jdbc42'
     compile 'org.jasypt:jasypt:1.9.0'
-    compile 'com.twilio.sdk:twilio:7.16.0'
+    compile 'com.twilio.sdk:twilio:7.50.0'
     compile "ch.qos.logback:logback-classic:${logbackVersion}"
     compile "ch.qos.logback:logback-access:${logbackVersion}"
 
