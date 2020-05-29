@@ -65,8 +65,13 @@ After the above requirements have been met:
     ```
     See [Twilio Account Settings](#twilio-account-settings) to locate the necessary environment variables.
 
-    If you are using a UNIX operating system, when the application starts the environment variables will be loaded. _If you are using a different operating system, make sure that all the
-    variables from the `.env` file are loaded into your environment._
+    If you are using a UNIX operating system, load the environment variables before the application starts.
+
+    ```bash
+    source .env
+    ```
+
+    _If you are using a different operating system, make sure that all the variables from the `.env` file are loaded into your environment._
 
 3. Create the database.
 
