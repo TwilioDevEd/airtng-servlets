@@ -108,7 +108,7 @@ That's it!
 If you have [Docker](https://www.docker.com/) already installed on your machine, you can use our `docker-compose.yml` to setup your project.
 
 1. Make sure you have the project cloned.
-2. Setup the following three variables in the `Dockerfile` file, see the [Twilio Account Settings](#twilio-account-settings).
+2. Setup the following three variables in the `docker-compose.yml` file, see the [Twilio Account Settings](#twilio-account-settings).
    - TWILIO_ACCOUNT_SID
    - TWILIO_AUTH_TOKEN
    - TWILIO_PHONE_NUMBER
