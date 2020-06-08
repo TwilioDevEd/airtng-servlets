@@ -1,0 +1,20 @@
+version: "3.6"
+services:
+  db:
+    container_name: db
+    image: postgres:9.6
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=root
+      - POSTGRES_DB=airtng-servlets
+  app:
+    container_name: app
+    stdin_open: true
+    tty: true
+    build: .
+    ports: 
+      - "8080:8080"
+    links:
+      - db
