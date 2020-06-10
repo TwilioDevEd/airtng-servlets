@@ -10,7 +10,6 @@ services:
       - POSTGRES_USER=sample
       - POSTGRES_DB=airtng-servlets
   app:
-    container_name: app
     stdin_open: true
     tty: true
     environment:
