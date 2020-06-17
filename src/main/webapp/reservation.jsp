@@ -24,7 +24,7 @@ taglib prefix="layout" uri=""%>
                                 <textarea class="form-control" name="message" id="message"
                                           size="10x10" rows="2" cols="20"
                                           placeholder="Hello! I am hoping to stay in your intergalactic suite..."
-                                          value="${message}"></textarea>
+                                          value="${message}" required></textarea>
                                 <span class="text-danger">${messageError}</span>
                             </div>
                             <button class="btn btn-primary">Reserve Now</button>

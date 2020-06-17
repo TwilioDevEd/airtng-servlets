@@ -1,0 +1,22 @@
+version: "3.6"
+services:
+  db:
+    image: postgres:9.6
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=sample
+      - POSTGRES_USER=sample
+      - POSTGRES_DB=airtng-servlets
+  app:
+    stdin_open: true
+    tty: true
+    environment:
+      - TWILIO_ACCOUNT_SID=your_account_sid
+      - TWILIO_AUTH_TOKEN=your_account_token
+      - TWILIO_PHONE_NUMBER=your_twilio_number
+    build: .
+    ports: 
+      - "8080:8080"
+    links:
+      - db
