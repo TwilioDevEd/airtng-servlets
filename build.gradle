@@ -20,7 +20,7 @@ dependencies {
     implementation(group: 'javax.servlet', name:'jstl', version:'1.2')
     implementation(group: 'kr.pe.kwonnam.jsp', name:'jsp-template-inheritance', version:'0.3.RELEASE')
     implementation(group: 'org.eclipse.persistence', name:'eclipselink', version:'2.7.6')
-    implementation(group: 'org.postgresql', name:'postgresql', version:'9.4-1206-jdbc42')
+    implementation(group: 'org.postgresql', name:'postgresql', version:'42.2.16')
     implementation(group: 'org.jasypt', name:'jasypt', version:'1.9.3')
     implementation(group: 'com.twilio.sdk', name:'twilio', version:'7.48.0')
     implementation(group: 'ch.qos.logback', name:'logback-classic', version:"${logbackVersion}")
