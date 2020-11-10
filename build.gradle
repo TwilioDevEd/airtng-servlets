@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'org.gretty' version '3.0.1'
-    id 'org.flywaydb.flyway' version '6.3.2'
+    id 'org.flywaydb.flyway' version '7.2.0'
 }
 
 group 'org.example'
