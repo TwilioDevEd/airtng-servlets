@@ -1,0 +1,17 @@
+version: 2
+updates:
+- package-ecosystem: gradle
+  directory: "/."
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: org.eclipse.persistence:eclipselink
+    versions:
+    - 3.0.0
+  - dependency-name: com.twilio.sdk:twilio
+    versions:
+    - 8.6.1
+  - dependency-name: org.flywaydb.flyway
+    versions:
+    - 7.5.2
