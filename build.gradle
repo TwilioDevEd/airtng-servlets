@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.gretty' version '3.0.4'
     id 'org.flywaydb.flyway' version '7.8.2'
+    id 'co.uzzu.dotenv.gradle' version '1.2.0'
 }
 
 group 'org.example'
@@ -25,6 +26,7 @@ dependencies {
     implementation(group: 'com.twilio.sdk', name:'twilio', version:'8.11.0')
     implementation(group: 'ch.qos.logback', name:'logback-classic', version:"${logbackVersion}")
     implementation(group: 'ch.qos.logback', name:'logback-access', version:"${logbackVersion}")
+    implementation(group: 'io.github.cdimascio', name: 'dotenv-java', version: '2.2.0')
 
     testImplementation(group: 'junit', name:'junit', version:'4.13.2')
     testImplementation(group: 'org.mockito', name:'mockito-core', version:'3.8.0')
@@ -33,8 +35,8 @@ dependencies {
 }
 
 flyway {
-    user = "$System.env.DB_USERNAME"
-    password = "$System.env.DB_PASSWORD"
-    url = "$System.env.JDBC_URL"
+    user = env.DB_USERNAME.value
+    password = env.DB_PASSWORD.value
+    url = env.JDBC_URL.value
     baselineOnMigrate = true
 }
