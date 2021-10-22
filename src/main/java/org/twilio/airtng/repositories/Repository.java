@@ -106,8 +106,8 @@ public abstract class Repository<T> {
             config.put("javax.persistence.jdbc.url", dotenv.get("JDBC_URL"));
         }
 
-        if (dotenv.get("DB_USER") != null) {
-            config.put("javax.persistence.jdbc.user", dotenv.get("DB_USER"));
+        if (dotenv.get("DB_USERNAME") != null) {
+            config.put("javax.persistence.jdbc.user", dotenv.get("DB_USERNAME"));
         }
 
         if (dotenv.get("DB_PASSWORD") != null) {
