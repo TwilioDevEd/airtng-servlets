@@ -1,16 +1,24 @@
 package org.twilio.airtng.lib;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 public class Config {
 
+    private static final Dotenv dotenv = Dotenv.load();
+
     public static String getAccountSid() {
-        return System.getenv("TWILIO_ACCOUNT_SID");
+        return dotenv.get("TWILIO_ACCOUNT_SID");
     }
 
     public static String getAuthToken() {
-        return System.getenv("TWILIO_AUTH_TOKEN");
+        return dotenv.get("TWILIO_AUTH_TOKEN");
     }
 
     public static String getPhoneNumber() {
-        return System.getenv("TWILIO_PHONE_NUMBER");
+        return dotenv.get("TWILIO_PHONE_NUMBER");
+    }
+
+    public static Dotenv getDotenv() {
+        return dotenv;
     }
 }
