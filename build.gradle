@@ -26,7 +26,7 @@ dependencies {
     implementation(group: 'com.twilio.sdk', name:'twilio', version:'8.11.0')
     implementation(group: 'ch.qos.logback', name:'logback-classic', version:"${logbackVersion}")
     implementation(group: 'ch.qos.logback', name:'logback-access', version:"${logbackVersion}")
-    implementation(group: 'io.github.cdimascio', name: 'dotenv-java', version: '2.2.0')
+    implementation(group: 'io.github.cdimascio', name: 'dotenv-java', version: '2.2.3')
 
     testImplementation(group: 'junit', name:'junit', version:'4.13.2')
     testImplementation(group: 'org.mockito', name:'mockito-core', version:'3.8.0')
