@@ -20,7 +20,7 @@ dependencies {
     implementation(group: 'javax.servlet', name:'javax.servlet-api', version:'4.0.1')
     implementation(group: 'javax.servlet', name:'jstl', version:'1.2')
     implementation(group: 'kr.pe.kwonnam.jsp', name:'jsp-template-inheritance', version:'0.3.RELEASE')
-    implementation(group: 'org.eclipse.persistence', name:'eclipselink', version:'2.7.7')
+    implementation(group: 'org.eclipse.persistence', name:'eclipselink', version:'3.0.3')
     implementation(group: 'org.postgresql', name:'postgresql', version:'42.2.20')
     implementation(group: 'org.jasypt', name:'jasypt', version:'1.9.3')
     implementation(group: 'com.twilio.sdk', name:'twilio', version:'8.11.0')
