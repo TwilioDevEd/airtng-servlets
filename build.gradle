@@ -23,7 +23,7 @@ dependencies {
     implementation(group: 'org.eclipse.persistence', name:'eclipselink', version:'2.7.7')
     implementation(group: 'org.postgresql', name:'postgresql', version:'42.2.20')
     implementation(group: 'org.jasypt', name:'jasypt', version:'1.9.3')
-    implementation(group: 'com.twilio.sdk', name:'twilio', version:'8.11.0')
+    implementation(group: 'com.twilio.sdk', name:'twilio', version:'9.10.0')
     implementation(group: 'ch.qos.logback', name:'logback-classic', version:"${logbackVersion}")
     implementation(group: 'ch.qos.logback', name:'logback-access', version:"${logbackVersion}")
     implementation(group: 'io.github.cdimascio', name: 'dotenv-java', version: '2.2.0')
